@@ -1,6 +1,6 @@
 // MIT License
 
-// Copyright (c) 2018 Jeremy Castagno
+// Copyright (c) 2020 Jeremy Castagno
 
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -19,14 +19,33 @@
 // LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 // SOFTWARE.
+
 #ifndef CPPLIB
 #define CPPLIB
 
 #include <string>
+#include <vector>
+#include <algorithm>
 
 namespace CPPLib {
-
+/**
+ * \brief Says hello with a name
+ * 
+ * \param name 
+ * \return std::string 
+ */
 std::string Hello(std::string& name);
+
+/**
+ * \brief Multiplies a generic array by a scalar
+ * 
+ * \tparam T 
+ * \param vec 
+ * \param scalar 
+ * \return std::vector<T> 
+ */
+template <typename T>
+std::vector<T> MultiplyByScalar(std::vector<T>& vec, T scalar);
 
 } // namespace CPPLib
 

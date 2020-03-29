@@ -6,10 +6,12 @@ import glob
 try:
     from wheel.bdist_wheel import bdist_wheel as _bdist_wheel
     # https://stackoverflow.com/a/45150383/1255535
+
     class bdist_wheel(_bdist_wheel):
         def finalize_options(self):
             _bdist_wheel.finalize_options(self)
             self.root_is_pure = False
+    print("bdist wheel is working and installed")
 except ImportError:
     print('Warning: cannot import "wheel" package to build platform-specific wheel')
     print('Install the "wheel" package to fix this warning')
@@ -30,20 +32,21 @@ setup(
     classifiers=[
     ],
     description=[
-        "Polylidar ...."
+        "CPPLib ...."
     ],
     cmdclass=cmdclass,
     install_requires=install_requires,
     include_package_data=True,
-    keywords="extract polygons mesh",
+    keywords="",
     license="MIT",
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     # Name of the package on PyPI
     name="@PYPI_PACKAGE_NAME@",
     packages=[
-        'polylidar',
+        'cpplib',
     ],
+    url="@PROJECT_HOME@",
     project_urls={
         'Documentation': '@PROJECT_DOCS@',
         'Source code': '@PROJECT_CODE@',

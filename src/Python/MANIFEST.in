@@ -1,0 +1,11 @@
+# Misc
+include README.md
+include LICENSE
+include requirements.txt
+
+# Compiled module
+include cpplib/cpplib*.pyd
+include cpplib/cpplib*.so
+
+# Exclude
+global-exclude *.py[co]

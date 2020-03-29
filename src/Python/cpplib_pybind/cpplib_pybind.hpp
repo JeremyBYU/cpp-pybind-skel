@@ -7,21 +7,17 @@
 #include <pybind11/stl.h>
 #include <pybind11/stl_bind.h>
 
-#include "Polylidar/Polylidar.hpp"
+#include "CPPLib/CPPLib.hpp"
 
 namespace py = pybind11;
 using namespace py::literals;
 
+// Use this if you want no copy returns for stl vectors
+// If not then just delete/comment this out
 PYBIND11_MAKE_OPAQUE(std::vector<size_t>);
-PYBIND11_MAKE_OPAQUE(std::vector<uint8_t>);
 PYBIND11_MAKE_OPAQUE(std::vector<double>);
 PYBIND11_MAKE_OPAQUE(std::vector<int>);
-PYBIND11_MAKE_OPAQUE(std::vector<std::array<size_t, 3>>);
-PYBIND11_MAKE_OPAQUE(std::vector<std::array<size_t, 2>>);
-PYBIND11_MAKE_OPAQUE(std::vector<std::array<double, 3>>);
-PYBIND11_MAKE_OPAQUE(std::vector<std::array<double, 2>>);
 
-// some helper functions
 namespace pybind11 {
 namespace detail {
 

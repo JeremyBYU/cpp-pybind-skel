@@ -1,8 +1,11 @@
+# License - MIT - Open3D
 # Option 1: Do not define "PYTHON_EXECUTABLE", but run `cmake ..` within your
 #           virtual environment. CMake will pick up the python executable in the
 #           virtual environment.
 # Option 2: You can also define `cmake -DPYTHON_EXECUTABLE` to specify a python
 #           executable.
+set(PYBIND_PACKAGE_FOLDER "${PYPI_PACKAGE_NAME}_pybind")
+
 if (NOT PYTHON_EXECUTABLE)
     # find_program will returns the python executable in current PATH, which
     # works with virtualenv
@@ -27,9 +30,9 @@ execute_process(
 )
 message(STATUS "Using Python version major: ${PYTHON_VERSION_MAJOR}")
 
-set(PACKAGE_NAME polylidar)
+set(PACKAGE_NAME cpplib)
 
-file(GLOB_RECURSE PY_ALL_SOURCE_FILES "polylidar_pybind/*.cpp")
+file(GLOB_RECURSE PY_ALL_SOURCE_FILES "${PYBIND_PACKAGE_FOLDER}/*.cpp")
 
 
 pybind11_add_module(${PACKAGE_NAME}
@@ -46,7 +49,7 @@ target_include_directories(${PACKAGE_NAME} SYSTEM PRIVATE
 )
 
 
-target_link_libraries(${PACKAGE_NAME} PRIVATE Polylidar::PL)
+target_link_libraries(${PACKAGE_NAME} PRIVATE CPPLib::CPPL)
 if (${PYTHON_VERSION_MAJOR} EQUAL 2)
     target_compile_definitions(${PACKAGE_NAME} PRIVATE PYTHON_2_FALLBACK)
 endif ()
@@ -85,7 +88,6 @@ add_custom_target(python-package
             -DPYTHON_PACKAGE_DST_DIR=${PYTHON_PACKAGE_DST_DIR}
             -DPYTHON_VERSION=${PYTHON_VERSION}
             -DPYTHON_COMPILED_MODULE_PATH=$<TARGET_FILE:${PACKAGE_NAME}>
-            # -DENABLE_JUPYTER=${ENABLE_JUPYTER}
             -DPROJECT_EMAIL=${PROJECT_EMAIL}
             -DPROJECT_HOME=${PROJECT_HOME}
             -DPROJECT_DOCS=${PROJECT_DOCS}
