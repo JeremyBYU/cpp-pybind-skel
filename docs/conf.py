@@ -52,8 +52,30 @@ sys.path.insert(
 # ones.
 extensions = [
     'sphinx.ext.mathjax', 'sphinx.ext.autodoc', 'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon'
+    'sphinx.ext.napoleon', 'breathe', 'exhale'
 ]
+
+# Setup the breathe extension
+breathe_projects = {
+    "CPPLib_CPP": "./_out/xml"
+}
+
+breathe_default_project = "CPPLib_CPP"
+
+# Setup the exhale extension
+exhale_args = {
+    # These arguments are required
+    "containmentFolder":     "./cpp_api",
+    "rootFileName":          "cpp_library_root.rst",
+    "rootFileTitle":         "C++ Library API",
+    "doxygenStripFromPath":  "..",
+    # Suggested optional arguments
+    "createTreeView":        True,
+    # TIP: if using the sphinx-bootstrap-theme, you need
+    # "treeViewIsBootstrap": True,
+    "exhaleExecutesDoxygen": True,
+    "exhaleDoxygenStdin":    "INPUT = ../include"
+}
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']

@@ -39,3 +39,11 @@ CPPLib: A Great CPPLib
     :caption: Python API
 
     python_api/cpplib
+
+.. _cpp_api_index:
+
+.. toctree::
+    :maxdepth: 1
+    :caption: C++ API
+
+    cpp_api/cpp_library_root

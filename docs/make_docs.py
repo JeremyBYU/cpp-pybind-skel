@@ -3,7 +3,7 @@
 # ----------------------------------------------------------------------------
 # The MIT License (MIT)
 #
-# Copyright (c) 2018 www.open3d.org
+# Copyright (c) 2018 www.open3d.org, 2020 Jeremy Castagno
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -28,6 +28,10 @@
 # (1) The user call `make *` (e.g. `make html`) gets forwarded to make.py
 # (2) make.py generate Python api docs, one ".rst" file per class / function
 # (3) make.py calls the actual `sphinx-build`
+#
+# Note from Jeremy Castagno - A modification has been made to use breathe/exhale to
+# generate documentation for the C++ API within the same sphinx/python website.
+# This results in a much more pleasent looking C++ API documentation using rtd.
 
 from __future__ import print_function
 import argparse
@@ -294,25 +298,6 @@ class SphinxDocsBuilder:
         subprocess.check_call(cmd, stdout=sys.stdout, stderr=sys.stderr)
 
 
-class DoxygenDocsBuilder:
-
-    def __init__(self, html_output_dir):
-        self.html_output_dir = html_output_dir
-
-    def run(self):
-        doxygen_temp_dir = "doxygen"
-        _create_or_clear_dir(doxygen_temp_dir)
-
-        cmd = ["doxygen", "Doxyfile"]
-        print('Calling: "%s"' % " ".join(cmd))
-        subprocess.check_call(cmd, stdout=sys.stdout, stderr=sys.stderr)
-        shutil.copytree(os.path.join("doxygen", "html"),
-                        os.path.join(self.html_output_dir, "html", "cpp_api"))
-
-        if os.path.exists(doxygen_temp_dir):
-            shutil.rmtree(doxygen_temp_dir)
-
-
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("--sphinx",
@@ -320,11 +305,6 @@ if __name__ == "__main__":
                         action="store_true",
                         default=False,
                         help="Build Sphinx for main docs and Python API docs.")
-    parser.add_argument("--doxygen",
-                        dest="build_doxygen",
-                        action="store_true",
-                        default=False,
-                        help="Build Doxygen for C++ API docs.")
     parser.add_argument("--is_release",
                         dest="is_release",
                         action="store_true",
@@ -352,12 +332,3 @@ if __name__ == "__main__":
         sdb.run()
     else:
         print("Sphinx build disabled, use --sphinx to enable")
-
-    # Doxygen is hard-coded to build with default option
-    # To customize build, customize Doxyfile or run doxygen manually
-    if args.build_doxygen:
-        print("Doxygen build enabled")
-        ddb = DoxygenDocsBuilder(html_output_dir)
-        ddb.run()
-    else:
-        print("Doxygen build disabled, use --doxygen to enable")

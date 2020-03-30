@@ -1,8 +1,12 @@
+# Documentation
+docs/python_api
+docs/cpp_api
+docs/_out
+
+
 scratch
 cmake-build
 assets/scratch
-docs/python_api
-docs/_out
 
 # Python gitignore
 .vscode
