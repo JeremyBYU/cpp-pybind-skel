@@ -156,4 +156,4 @@ void ClassMethodDocInject(
 extern py::handle static_property;
 
 }  // namespace docstring
-}  // namespace open3d
+}  // namespace CPPLib

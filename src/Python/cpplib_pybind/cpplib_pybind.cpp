@@ -12,10 +12,10 @@ PYBIND11_MODULE(cpplib, m)
     py::bind_vector<std::vector<int>>(m, "VectorInt", py::buffer_protocol());
     py::bind_vector<std::vector<std::size_t>>(m, "VectorULongInt", py::buffer_protocol());
 
-    m.def("hello", &CPPLib::Hello, "name"_a);
+    m.def("hello", &CPPLib::Hello, "name"_a, "Says hello to name");
     docstring::FunctionDocInject(m, "hello", {{"name", "The name to say hello with"}});
 
-    // You can use just use function overload with same name, but python documentation doesn't support function overload
+    // You *can* use use function overload with same name, but python documentation doesn't support function overload
     // Here I choose to make multiple function with different names
     m.def("multiply_by_scalar_double", &CPPLib::MultiplyByScalar<double>, "vec"_a, "scalar"_a, "Multiplies a double vector");
     m.def("multiply_by_scalar_int", &CPPLib::MultiplyByScalar<int>, "vec"_a, "scalar"_a, "Multiplies an int vector");
@@ -29,4 +29,11 @@ PYBIND11_MODULE(cpplib, m)
     docstring::FunctionDocInject(
         m, "multiply_by_scalar_size_t",
         {{"vec", "A list of size_t numbers "}, {"scalar", "A scalar number to multiply the list by."}});
+    // Heres an example to overload, but the documentation is wonky
+    // m.def("multiply_by_scalar", &CPPLib::MultiplyByScalar<double>, "vec"_a, "scalar"_a, "Multiplies a vector");
+    // m.def("multiply_by_scalar", &CPPLib::MultiplyByScalar<int>, "vec"_a, "scalar"_a, "Multiplies a vector");
+    // m.def("multiply_by_scalar", &CPPLib::MultiplyByScalar<size_t>, "vec"_a, "scalar"_a, "Multiplies a vector");
+    // docstring::FunctionDocInject(
+    //     m, "multiply_by_scalar",
+    //     {{"vec", "A list of numbers (double, int, size_t)"}, {"scalar", "A scalar number to multiply the list by."}});
 }

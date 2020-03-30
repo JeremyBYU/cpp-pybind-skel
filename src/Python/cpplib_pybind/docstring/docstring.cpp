@@ -251,7 +251,7 @@ void FunctionDoc::ParseSummary()
 void FunctionDoc::ParseArguments()
 {
     // Parse docstrings of arguments
-    // Input: "foo(arg0: float, arg1: float = 1.0, arg2: int = 1) -> open3d.bar"
+    // Input: "foo(arg0: float, arg1: float = 1.0, arg2: int = 1) -> cpplib.bar"
     // Goal: split to {"arg0: float", "arg1: float = 1.0", "arg2: int = 1"} and
     //       call function to parse each argument respectively
     std::vector<std::string> argument_tokens = GetArgumentTokens(pybind_doc_);
@@ -495,7 +495,7 @@ std::string FunctionDoc::ToMarkdownDocString() const
 std::string FunctionDoc::NamespaceFix(const std::string& s)
 {
     std::string rc = std::regex_replace(s, std::regex("::"), ".");
-    rc = std::regex_replace(rc, std::regex("open3d\\.open3d\\."), "open3d.");
+    rc = std::regex_replace(rc, std::regex("cpplib\\.cpplib\\."), "cpplib.");
     return rc;
 }
 
@@ -556,9 +556,9 @@ std::vector<std::string> FunctionDoc::GetArgumentTokens(
 {
     // First insert commas to make things easy
     // From:
-    // "foo(arg0: float, arg1: float = 1.0, arg2: int = 1) -> open3d.bar"
+    // "foo(arg0: float, arg1: float = 1.0, arg2: int = 1) -> cpplib.bar"
     // To:
-    // "foo(, arg0: float, arg1: float = 1.0, arg2: int = 1) -> open3d.bar"
+    // "foo(, arg0: float, arg1: float = 1.0, arg2: int = 1) -> cpplib.bar"
     std::string str = pybind_doc;
     size_t parenthesis_pos = str.find("(");
     if (parenthesis_pos == std::string::npos)
