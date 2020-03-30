@@ -384,6 +384,114 @@ std::string FunctionDoc::ToGoogleDocString() const
     return rc.str();
 }
 
+std::string FunctionDoc::ToMarkdownDocString() const
+{
+    // Example Gooele style:
+    // http://www.sphinx-doc.org/en/1.5/ext/example_google.html
+
+    std::ostringstream rc;
+    std::string indent = "    ";
+
+    // Function signature to be parsed by Sphinx
+    rc << name_ << "(";
+    for (size_t i = 0; i < argument_docs_.size(); ++i)
+    {
+        const ArgumentDoc& argument_doc = argument_docs_[i];
+        rc << argument_doc.name_;
+        if (argument_doc.default_ != "")
+        {
+            rc << "=" << argument_doc.default_;
+        }
+        if (i != argument_docs_.size() - 1)
+        {
+            rc << ", ";
+        }
+    }
+    rc << ")" << std::endl;
+
+    // Summary line, strictly speaking this shall be at the very front. However
+    // from a compiled Python module we need the function signature hints in
+    // front for Sphinx parsing and PyCharm autocomplete
+    if (summary_ != "")
+    {
+        rc << std::endl;
+        rc << summary_ << std::endl;
+    }
+
+    // Arguments
+    if (argument_docs_.size() != 0 &&
+        !(argument_docs_.size() == 1 && argument_docs_[0].name_ == "self"))
+    {
+        rc << std::endl;
+        rc << "#### Parameters:" << std::endl;
+        for (const ArgumentDoc& argument_doc : argument_docs_)
+        {
+            if (argument_doc.name_ == "self")
+            {
+                continue;
+            }
+            rc << indent << "- *" << argument_doc.name_ << "*" << " (" << argument_doc.type_;
+            if (argument_doc.default_ != "")
+            {
+                rc << ", optional";
+            }
+            if (argument_doc.default_ != "" &&
+                argument_doc.long_default_ == "")
+            {
+                rc << ", default=" << argument_doc.default_;
+            }
+            rc << ")";
+            if (argument_doc.body_ != "")
+            {
+                rc << ": " << argument_doc.body_;
+            }
+            if (argument_doc.long_default_ != "")
+            {
+                std::vector<std::string> lines;
+                SplitString(lines, argument_doc.long_default_, "\n",
+                            true);
+                rc << " Default value:" << std::endl
+                   << std::endl;
+                bool prev_line_is_listing = false;
+                for (std::string& line : lines)
+                {
+                    line = StringCleanAll(line);
+                    if (line[0] == '-')
+                    { // listing
+                        // Add empty line before listing
+                        if (!prev_line_is_listing)
+                        {
+                            rc << std::endl;
+                        }
+                        prev_line_is_listing = true;
+                    }
+                    else
+                    {
+                        prev_line_is_listing = false;
+                    }
+                    rc << indent << indent << line << std::endl;
+                }
+            }
+            else
+            {
+                rc << std::endl;
+            }
+        }
+    }
+
+    // Return
+    rc << std::endl;
+    rc << "#### Returns:" << std::endl;
+    rc << indent <<  return_doc_.type_;
+    if (return_doc_.body_ != "")
+    {
+        rc << ": " << return_doc_.body_;
+    }
+    rc << std::endl;
+
+    return rc.str();
+}
+
 std::string FunctionDoc::NamespaceFix(const std::string& s)
 {
     std::string rc = std::regex_replace(s, std::regex("::"), ".");

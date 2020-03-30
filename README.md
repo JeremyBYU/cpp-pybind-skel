@@ -10,20 +10,22 @@ This is a template repository used to create  C++/Python libraries. This is for 
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
 * Documentation for both C++ and Python created using Doxygen and Sphinx.
 
-This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However  users *building* the library will have to have CMake installed which may be a consideration one should consider before using this template repo as a starting point.
+This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However  users *building* the library will have to have CMake installed which may be a consideration before using this template repo as a starting point.
 
 ## Instructions For Use
 
 1. `git clone https://github.com/JeremyBYU/cpp-pybind-skel.git`
-2. `./scripts/liftoff.sh` - Will create copy the repo into a new folder of the name of your choosing and reset git history.
+2. `./scripts/liftoff.sh` - Will copy the repo into a new folder of the name of your choosing and reset git history.
 
 ### Rename Files
 
 You will want to rename files and library names with a simple `find and replace` using your IDE/editor. Lets say you named your project `SimpleImageFilters` with an associates short acronym of `SIF` . Then simply find and replace in this repository the following (case sensitivity matters):
 
-* `CPPL` -> `SIF` 
-* `cpplibrary` -> `simpleimagefilters` 
-* `CPPLibrary` -> `SimpleImageFilters` 
+* `CPPLibrary` -> `SimpleImageFilters` - C++ Top Namespace and CMake Project Name
+* `CPPL` -> `SIF` - Acronym used in CMake alias for project
+* `cpplibrary` -> `simpleimagefilters` - Python Library Extension Name
+
+You don't have to use this naming convention. You can change this this to anyway you would like.
 
 ## Build
 
@@ -57,12 +59,13 @@ You can build a binary wheel that you can distribute to users with your **exact*
 
 1. `cmake --build . --target pip-package --config Release` 
 
-The wheel should then be at `cmake-build\lib\python_package\pip_package` .
+The wheel should then be at `cmake-build\lib\python_package\pip_package`.
 
+TODO - Master the intricate world of conda/pip distribution (multiplatform wheels, manylinux)...
 
 ## Documentation
 
-C++ classes and functions are documented using Doxygen in their header files. Associated Python functions/classes which are bound with Pybind11 are *re-documented*. This is for two reasons:
+C++ classes and functions are documented in their header files. Associated Python functions/classes which are bound with Pybind11 are *re-documented*. This is for two reasons:
 
 1. The function/class API might actually be slightly different in arguments and return types (e.g., list vs. std::vector) and more detail/nuance may be desired in one form of the other.
 2. I have no idea how to share them.

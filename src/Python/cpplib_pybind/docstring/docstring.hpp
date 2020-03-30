@@ -93,6 +93,8 @@ public:
     /// Generate Google style python docstring
     std::string ToGoogleDocString() const;
 
+    std::string ToMarkdownDocString() const;
+
 protected:
     /// Parse the function name from docstring
     void ParseFunctionName();
