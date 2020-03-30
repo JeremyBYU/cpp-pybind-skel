@@ -4,7 +4,7 @@ This is a template repository used to create  C++/Python libraries. This is for 
 
 ## Key Features
 
-* C++ Library is independent of Python, i.e. can be dropped into pure C++ projects.
+* C++ Library is independent of Python Extension, i.e. can be dropped into pure C++ projects.
 * Cross platform using Modern CMake.
 * Benchmark ([Google Benchmark](https://github.com/google/benchmark)) and Testing ([doctest](https://github.com/onqtam/doctest)) built in.
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
@@ -38,18 +38,12 @@ Building happens entirely with CMake.
 Build options:
 
 ```txt
-// CPPL - Build Benchmarks
-CPPL_BUILD_BENCHMARKS:BOOL=ON
-// CPPL - Build Examples
-CPPL_BUILD_EXAMPLES:BOOL=ON
-// CPPL -Build Python Module
-CPPL_BUILD_PYMODULE:BOOL=ON
-// CPPL - Build Tests
-CPPL_BUILD_TESTS:BOOL=ON
-// CPPL - Add Werror flag to build (turns warnings into errors)
-CPPL_BUILD_WERROR:BOOL=OFF
-// CPPL - Build with OpenMP Support
-CPPL_WITH_OPENMP:BOOL=ON
+CPPL_BUILD_BENCHMARKS:BOOL=ON // CPPL - Build Benchmarks
+CPPL_BUILD_EXAMPLES:BOOL=ON // CPPL - Build Examples
+CPPL_BUILD_PYMODULE:BOOL=ON // CPPL -Build Python Module
+CPPL_BUILD_TESTS:BOOL=ON // CPPL - Build Tests
+CPPL_BUILD_WERROR:BOOL=OFF // CPPL - Add Werror flag to build (turns warnings into errors)
+CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 ```
 
 ### Python
@@ -73,7 +67,7 @@ C++ classes and functions are documented using Doxygen in their header files. As
 1. The function/class API might actually be slightly different in arguments and return types (e.g., list vs. std::vector) and more detail/nuance may be desired in one form of the other.
 2. I have no idea how to share them.
 
-For Python, I am using this [method](./src/Python/cpplib_pybind/docstring/docstring.hpp) to inject further documentation into functions/classes which was developed by [Intel at Open3D](https://github.com/intel-isl/Open3D). They have provide a function that can transform an input `map` of arg/description pairs and convert to [Googles Python Docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).
+For Python, I am using this [method](./src/Python/cpplib_pybind/docstring/docstring.hpp) to inject further documentation into functions/classes which was developed by [Intel at Open3D](https://github.com/intel-isl/Open3D). They provide a function that can transform an input `map` of arg/description pairs and convert to [Googles Python Docstring format](https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html).
 
 ### Documentation Website Generation
 
