@@ -10,7 +10,7 @@ This is a template repository used to create  C++/Python libraries. This is for 
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
 * Documentation for both C++ and Python created using Doxygen and Sphinx.
 
-This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However external users *building* the library will have to have CMake installed which may be a consideration before using this template repo as a starting point.
+This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However external users *building* the library will need CMake installed which may be a consideration before using this template repo as a starting point.
 
 ## Instructions For Use
 

@@ -2,6 +2,7 @@ import argparse
 from pathlib import Path
 import shutil
 import logging
+import sys
 
 logging.basicConfig(level=logging.INFO)
 
@@ -105,11 +106,14 @@ def ignore_folders(directory, contents):
 def main():
     args = parse_args()
 
-
-    logging.info("Copying skeleton to new directory")
     base = Path(__file__).parent.parent
     new_base = (base / "../" / args.libname).resolve()
-    shutil.rmtree(new_base, ignore_errors=True)
+
+    if (new_base.exists()):
+        logging.error("Please remove folder %s before proceeding. I won't do it for your.", new_base)
+        sys.exit(1)
+    
+    logging.info("Copying skeleton to new directory")
     destination = shutil.copytree(base, new_base, ignore=ignore_folders)
 
     logging.info("Renaming files, Replacing Text")
