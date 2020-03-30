@@ -10,22 +10,24 @@ This is a template repository used to create  C++/Python libraries. This is for 
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
 * Documentation for both C++ and Python created using Doxygen and Sphinx.
 
-This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However  users *building* the library will have to have CMake installed which may be a consideration before using this template repo as a starting point.
+This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However external users *building* the library will have to have CMake installed which may be a consideration before using this template repo as a starting point.
 
 ## Instructions For Use
 
 1. `git clone https://github.com/JeremyBYU/cpp-pybind-skel.git`
-2. `./scripts/liftoff.sh` - Will copy the repo into a new folder of the name of your choosing and reset git history.
 
 ### Rename Files
 
 You will want to rename files and library names with a simple `find and replace` using your IDE/editor. Lets say you named your project `SimpleImageFilters` with an associates short acronym of `SIF` . Then simply find and replace in this repository the following (case sensitivity matters):
 
-* `CPPLibrary` -> `SimpleImageFilters` - C++ Top Namespace and CMake Project Name
+* `CPPLib` -> `SimpleImageFilters` - C++ Top Namespace and CMake Project Name
+* `CPPLIB` -> `SIMPLEIMAGEFILTERS` - Same but uppercase, used in CMake
 * `CPPL` -> `SIF` - Acronym used in CMake alias for project
-* `cpplibrary` -> `simpleimagefilters` - Python Library Extension Name
+* `cpplib` -> `simpleimagefilters` - Python Library Extension Name
 
-You don't have to use this naming convention. You can change this this to anyway you would like.
+A helper python script, `rename_project.py` is provided if desired. 
+
+Note: you don't have to use the naming convention proposed above and may use any you would like. I think the most important thing is simply that the Python extension target is different then C++ library target.
 
 ## Build
 
@@ -74,7 +76,7 @@ For Python, I am using this [method](./src/Python/cpplib_pybind/docstring/docstr
 
 ### Documentation Website Generation
 
-TODO
+Documentation building has been taken from Open3D with some small modification. Python *and* C++ documentation is generated using `Sphinx` into the **same** website. The C++ API is actually integrated into sphinx using `breathe/exhale`. Please see `docs/builddocs.rst`.
 
 ## Acknowledgements
 

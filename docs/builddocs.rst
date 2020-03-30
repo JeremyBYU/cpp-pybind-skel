@@ -13,7 +13,7 @@ Prerequisites
 -------------
 
 1. Build CPPLib from source
-```````````````````````````
+``````````````````````````````````````
 
 Clone and build CPPLib from source.
 
@@ -58,7 +58,7 @@ Build
 
     cd docs
 
-    # You may optionally select the --sphinx --doxygen flag
-    python make_docs.py --sphinx --doxygen
+    # You may optionally select the --sphinx flag
+    python make_docs.py --sphinx
 
 The docs html will be saved in ``docs/_out`` folder.
