@@ -110,7 +110,7 @@ def main():
     new_base = (base / "../" / args.libname).resolve()
 
     if (new_base.exists()):
-        logging.error("Please remove folder %s before proceeding. I won't do it for your.", new_base)
+        logging.error("Please remove folder %s before proceeding. I won't do it for safety reasons.", new_base)
         sys.exit(1)
     
     logging.info("Copying skeleton to new directory")
