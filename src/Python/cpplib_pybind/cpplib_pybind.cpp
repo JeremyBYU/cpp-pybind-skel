@@ -4,7 +4,7 @@
 
 using namespace CPPLib;
 
-PYBIND11_MODULE(cpplib, m)
+PYBIND11_MODULE(cpplib_pybind, m)
 {
     m.doc() = "Python binding of CPPLib";
 

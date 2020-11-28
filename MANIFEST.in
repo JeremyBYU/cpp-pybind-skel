@@ -7,6 +7,5 @@ include requirements.txt
 include cpplib/cpplib*.pyd
 include cpplib/cpplib*.so
 include cpplib_pybind*.so
-
 # Exclude
 global-exclude *.py[co]
