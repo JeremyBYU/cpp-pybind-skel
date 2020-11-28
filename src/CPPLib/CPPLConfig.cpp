@@ -1,4 +1,4 @@
-#include "LibConfig.hpp"
+#include "CPPLConfig.hpp"
 #include <string>
 
 namespace CPPLib {
