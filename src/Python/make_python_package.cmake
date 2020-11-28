@@ -17,15 +17,13 @@ get_filename_component(PYTHON_COMPILED_MODULE_NAME ${PYTHON_COMPILED_MODULE_PATH
 file(COPY ${PYTHON_COMPILED_MODULE_PATH}
      DESTINATION ${PYTHON_PACKAGE_DST_DIR}/cpplib)
 
-# 2.5) Copy the compiled module to the parent direcotry as well
-get_filename_component(PYTHON_COMPILED_MODULE_DIR ${PYTHON_COMPILED_MODULE_PATH} DIRECTORY)
-get_filename_component(PYTHON_COMPILED_MODULE_DIR_PARENT ${PYTHON_COMPILED_MODULE_DIR} DIRECTORY)
+# 2.5) Copy the compiled module to the parent directory as well
 file(COPY ${PYTHON_COMPILED_MODULE_PATH}
-     DESTINATION ${PYTHON_COMPILED_MODULE_DIR_PARENT})
+     DESTINATION ${ORIG_CMAKE_LIBRARY_OUTPUT_DIRECTORY})
 
 # 3) Configured files and supporting files
-configure_file("${PYTHON_PACKAGE_SRC_DIR}/setup.py"
-               "${PYTHON_PACKAGE_DST_DIR}/setup.py")
+# configure_file("${PYTHON_PACKAGE_SRC_DIR}/setup.py"
+#                "${PYTHON_PACKAGE_DST_DIR}/setup.py")
 configure_file("${PYTHON_PACKAGE_SRC_DIR}/cpplib/__init__.py"
                "${PYTHON_PACKAGE_DST_DIR}/cpplib/__init__.py")
 

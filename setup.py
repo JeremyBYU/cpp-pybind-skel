@@ -21,6 +21,11 @@ class CMakeExtension(Extension):
         Extension.__init__(self, name, sources=[])
         self.sourcedir = os.path.abspath(sourcedir)
 
+# Read Version
+with open('src/version.txt', 'r') as f:
+    lines = f.readlines()
+version = ".".join([line.split(' ')[1].strip() for line in lines if line])
+print("The version is {}".format(version))
 
 class CMakeBuild(build_ext):
     def run(self):
@@ -62,7 +67,6 @@ class CMakeBuild(build_ext):
         cmake_args = [
             "-DCMAKE_LIBRARY_OUTPUT_DIRECTORY={}".format(extdir),
             "-DPYTHON_EXECUTABLE={}".format(sys.executable),
-            "-DEXAMPLE_VERSION_INFO={}".format(self.distribution.get_version()),
             "-DCMAKE_BUILD_TYPE={}".format(cfg),  # not used on MSVC, but no harm
         ]
         build_args = []
@@ -119,12 +123,12 @@ class CMakeBuild(build_ext):
 
 setup(
     name="cpplib",
-    version="1.0.0",
+    version=version,
     author="Jeremy Castagno",
     author_email="jeremybyu@gmail.com",
     description="Test CPPLib integration",
     long_description="",
-    packages=['cpplib', 'cpplib_pybind'],
+    packages=['cpplib'],
     package_dir={'':'src/Python'},
     ext_modules=[CMakeExtension("cpplib_pybind")],
     cmdclass={"build_ext": CMakeBuild},
