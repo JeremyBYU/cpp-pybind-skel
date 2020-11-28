@@ -6,7 +6,7 @@ This is a template repository used to create  C++/Python libraries. This is for 
 
 * C++ Library is independent of Python Extension, i.e. can be dropped into pure C++ projects.
 * Cross platform using Modern CMake.
-* Benchmark ([Google Benchmark](https://github.com/google/benchmark)) and Testing ([doctest](https://github.com/onqtam/doctest)) built in.
+* Benchmark ([Nanobench](https://github.com/martinus/nanobench)) and Testing ([doctest](https://github.com/onqtam/doctest)) built in.
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
 * Documentation for both C++ and Python created using Doxygen and Sphinx.
 

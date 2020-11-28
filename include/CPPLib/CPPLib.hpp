@@ -25,9 +25,18 @@
 
 #include <string>
 #include <vector>
+#include <iterator>
 #include <algorithm>
 
 namespace CPPLib {
+
+/**
+ * \brief Get version of CPPLIb
+ * 
+ * \return std::string 
+ */
+std::string GetCPPLibVersion();
+
 /**
  * \brief Says hello with a name
  * 

@@ -138,7 +138,7 @@ protected:
 /// Parse pybind docstring to FunctionDoc and inject argument docstrings for
 /// functions
 void FunctionDocInject(
-        py::module& pybind_module,
+        py::module_& pybind_module,
         const std::string& function_name,
         const std::unordered_map<std::string, std::string>& map_parameter_docs =
                 std::unordered_map<std::string, std::string>());
@@ -146,7 +146,7 @@ void FunctionDocInject(
 /// Parse pybind docstring to FunctionDoc and inject argument docstrings for
 /// class methods
 void ClassMethodDocInject(
-        py::module& pybind_module,
+        py::module_& pybind_module,
         const std::string& class_name,
         const std::string& function_name,
         const std::unordered_map<std::string, std::string>&

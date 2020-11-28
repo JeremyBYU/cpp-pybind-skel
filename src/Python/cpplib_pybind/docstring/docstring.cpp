@@ -102,7 +102,7 @@ void SplitString(std::vector<std::string>& tokens,
 py::handle static_property =
     py::handle((PyObject*)py::detail::get_internals().static_property_type);
 
-void ClassMethodDocInject(py::module& pybind_module,
+void ClassMethodDocInject(py::module_& pybind_module,
                           const std::string& class_name,
                           const std::string& function_name,
                           const std::unordered_map<std::string, std::string>&
@@ -172,7 +172,7 @@ void ClassMethodDocInject(py::module& pybind_module,
     f->m_ml->ml_doc = strdup(fd.ToGoogleDocString().c_str());
 }
 
-void FunctionDocInject(py::module& pybind_module,
+void FunctionDocInject(py::module_& pybind_module,
                        const std::string& function_name,
                        const std::unordered_map<std::string, std::string>&
                            map_parameter_body_docs)

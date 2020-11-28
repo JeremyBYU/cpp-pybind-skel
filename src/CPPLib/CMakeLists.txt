@@ -1,8 +1,11 @@
+# Configure Header File
+configure_file("CPPLConfig.hpp.in" "CPPLConfig.hpp" @ONLY)
+
 # Set the Source, Header Files
 set(CPPLIB_SRC "${CMAKE_CURRENT_SOURCE_DIR}")
 set(INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
 set(CPPLIB_INCLUDE_DIR "${INCLUDE_DIR}/CPPlib")
-set(CPPLIB_SOURCE_FILES ${CPPLIB_SRC}/CPPLib.cpp)
+set(CPPLIB_SOURCE_FILES ${CPPLIB_SRC}/CPPLib.cpp ${CPPLIB_SRC}/CPPLConfig.cpp)
 set(CPPLIB_HEADER_FILES ${CPPLIB_INCLUDE_DIR}/CPPLib.hpp)
 
 # Create the CPP Library
@@ -46,6 +49,10 @@ $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:
 ${DESIRED_WARNINGS}>
 $<$<CXX_COMPILER_ID:MSVC>:
 /W4>)
+
+
+# To include the CPPLConfig.hpp file
+target_include_directories(${PROJECT_NAME} PRIVATE ${CMAKE_CURRENT_BINARY_DIR})
 
 # OPTION Build with OpenMP Support
 if (CPPL_WITH_OPENMP)

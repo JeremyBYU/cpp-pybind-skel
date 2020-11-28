@@ -29,6 +29,8 @@ PYBIND11_MODULE(cpplib, m)
     docstring::FunctionDocInject(
         m, "multiply_by_scalar_size_t",
         {{"vec", "A list of size_t numbers "}, {"scalar", "A scalar number to multiply the list by."}});
+
+    m.def("get_cpplib_version", &CPPLib::GetCPPLibVersion, "Get CPPLib Version");
     // Heres an example to overload, but the documentation is wonky
     // m.def("multiply_by_scalar", &CPPLib::MultiplyByScalar<double>, "vec"_a, "scalar"_a, "Multiplies a vector");
     // m.def("multiply_by_scalar", &CPPLib::MultiplyByScalar<int>, "vec"_a, "scalar"_a, "Multiplies a vector");

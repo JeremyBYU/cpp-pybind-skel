@@ -1,5 +1,5 @@
-#include <benchmark/benchmark.h>
-#include "CPPLib/CPPLib.hpp"
-
-// Run the benchmark
-BENCHMARK_MAIN();
+// This file configured doctest to run, please leave empty
+// Write more tests as separate files and add in CMakeLists.txt
+#define DOCTEST_CONFIG_IMPLEMENT_WITH_MAIN
+#include "doctest/doctest.h"
+#include <nanobench.h>
