@@ -6,6 +6,8 @@ docs/_out
 
 scratch
 cmake-build
+cmake-build-linux
+build
 assets/scratch
 
 # Python gitignore

@@ -1,3 +1,11 @@
+include(FetchContent)
+
+FetchContent_Declare(
+  extern_nanobench
+  GIT_REPOSITORY https://github.com/martinus/nanobench.git
+  GIT_TAG v4.1.0
+  GIT_SHALLOW TRUE
+)
 # After the following call, the library will be installed
 FetchContent_MakeAvailable(extern_nanobench)
 FetchContent_MakeAvailable(extern_doctest)
