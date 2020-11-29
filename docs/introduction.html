@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introducing CPPLib &mdash; CPPLib 1.0.1 documentation</title>
+  <title>Introducing CPPLib &mdash; CPPLib 1.0.3 documentation</title>
   
 
   
@@ -59,7 +59,7 @@
 
           
             
-            <img src="_static/CPPLib.png" class="logo" alt="Logo"/>
+            <img src="_static/logo_1.png" class="logo" alt="Logo"/>
           
           </a>
 
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.1
+                1.0.3
               </div>
             
           
@@ -115,6 +115,9 @@
 <li class="toctree-l4"><a class="reference internal" href="#documentation-website-generation">Documentation Website Generation</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#release-steps">Release Steps</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#faq">FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">#</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
 </ul>
 </li>
@@ -332,6 +335,26 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 <h4>Documentation Website Generation<a class="headerlink" href="#documentation-website-generation" title="Permalink to this headline">¶</a></h4>
 <p>Documentation building has been taken from Open3D with some small modification. Python <em>and</em> C++ documentation is generated using <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> into the <strong>same</strong> website. The C++ API is actually integrated into sphinx using <code class="docutils literal notranslate"><span class="pre">breathe/exhale</span></code>. Please see <code class="docutils literal notranslate"><span class="pre">docs/builddocs.rst</span></code>.</p>
 </div>
+</div>
+<div class="section" id="release-steps">
+<h3>Release Steps<a class="headerlink" href="#release-steps" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p>Make all necessary changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/manage_versions.py</span> <span class="pre">--bump</span> <span class="pre">patch</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">src_docs</span> <span class="pre">&amp;&amp;</span> <span class="pre">python</span> <span class="pre">make_docs.py</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">..</span></code></p></li>
+<li><p>commit changes</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/manage_versions.py</span> <span class="pre">--tag</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">dev</span> <span class="pre">--tags</span></code></p></li>
+</ol>
+</div>
+<div class="section" id="faq">
+<h3>FAQ<a class="headerlink" href="#faq" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="id4">
+<h3>#<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
+<p><strong>Q:</strong> ERROR: Could not install packages due to an EnvironmentError</p>
+<p><strong>A:</strong> Remove the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory</p>
 </div>
 <div class="section" id="acknowledgements">
 <h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h3>

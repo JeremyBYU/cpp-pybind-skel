@@ -3,7 +3,7 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-.. image:: _static/CPPLib.png
+.. image:: _static/logo_1.png
     :alt: CPPLib Logo
     :width: 320px
     :align: center

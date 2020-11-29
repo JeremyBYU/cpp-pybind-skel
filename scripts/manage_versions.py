@@ -46,7 +46,7 @@ def bump(bump_type:str='patch', version_file='src/version.txt'):
     
     if bump_type != 'none':
         with open('src/version.txt', 'w') as f:
-            f.write("Major {}\nMinor {}\nPatch {}".format(*version))
+            f.write("MAJOR {}\nMINOR {}\nPATCH {}".format(*version))
     else:
         pass
         # print("Not incrementing version, bump was 'none'.\n")

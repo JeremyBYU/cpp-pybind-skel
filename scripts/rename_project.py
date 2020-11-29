@@ -99,7 +99,7 @@ def rename_files(base, libname, libname_short, libname_python):
 
 def ignore_folders(directory, contents):
     filtered = [content for content in contents if content in [
-        'build', 'cmake-build', '.git', 'cpp_api', 'python_api']]
+        'build', 'cmake-build', '.git', 'cpp_api', 'python_api', 'dist', 'wheelhouse']]
     return filtered
 
 
@@ -123,10 +123,16 @@ def main():
     rename_files(new_base, args.libname,
                  args.libname_short, args.libname_python)
 
+    logging.info("Renaming text in top level files")
     top_file = new_base / "CMakeLists.txt"
     replace_strings_in_file(top_file, to_list=new_names)
+    top_file = new_base / "setup.py"
+    replace_strings_in_file(top_file, to_list=new_names)
 
-    logging.info("Renaming text in files")
+    logging.info("Setting version to 0.0.1")
+    with open(Path(new_base) / 'src/version.txt', 'w') as f:
+        f.write("MAJOR {}\nMINOR {}\nPATCH {}".format(0, 0, 1))
+
 
 
 if __name__ == "__main__":

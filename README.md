@@ -103,6 +103,23 @@ For Python, I am using this [method](./src/Python/cpplib_pybind/docstring/docstr
 
 Documentation building has been taken from Open3D with some small modification. Python *and* C++ documentation is generated using `Sphinx` into the **same** website. The C++ API is actually integrated into sphinx using `breathe/exhale`. Please see `docs/builddocs.rst`.
 
+
+## Release Steps
+
+1. Make all necessary changes
+2. `python scripts/manage_versions.py --bump patch`
+3. `pip install .`
+4. `cd src_docs && python make_docs.py && cd ..`
+5. commit changes
+6. `python scripts/manage_versions.py --tag`
+7. `git push origin dev --tags`
+
+## FAQ
+
+###
+**Q:** ERROR: Could not install packages due to an EnvironmentError
+
+**A:** Remove the `build` directory
 ## Acknowledgements
 
 I have learned a lot by listening/watching/reading about C++. I can't list them all but the following links had the most influence in developing this repo.
