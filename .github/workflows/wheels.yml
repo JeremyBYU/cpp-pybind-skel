@@ -31,29 +31,17 @@ jobs:
         run: |
           python3 -m pip install cibuildwheel==1.7.0
 
-      - name: Config
+      - name: Build Wheels
         run: |
-          mkdir cmake-build
-          cd cmake-build
-          cmake .. 
-  # cmake -G "Visual Studio 16 2019" -A x64 -DBUILD_EXAMPLES=OFF  ..
-      - name: Build Python Package
-        run: |
-          cd cmake-build
-          cmake --build . --parallel ${{ env.NPROC }} --target python-package --config Release
-
-      - name: Build Wheel
-        run: |
-          cd cmake-build/lib/python_package
-          python -m cibuildwheel --output-dir wheelhouse
+          python3 -m cibuildwheel --output-dir wheelhouse
 
       - name: Show files
-        run: ls -lh cmake-build/lib/python_package/wheelhouse
+        run: ls -lh wheelhouse
 
       - name: Upload wheels
         uses: actions/upload-artifact@v2
         with:
-          path: cmake-build/lib/python_package/wheelhouse/*.whl
+          path: wheelhouse/*.whl
             
 
   # build-wheel:

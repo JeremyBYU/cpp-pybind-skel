@@ -8,6 +8,7 @@ scratch
 cmake-build
 cmake-build-linux
 build
+wheelhouse
 assets/scratch
 
 # Python gitignore
