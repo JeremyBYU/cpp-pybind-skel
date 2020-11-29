@@ -56,13 +56,13 @@ jobs:
         include:
           - os: ubuntu-latest
             cibw-arch: manylinux_x86_64
-          - runs-on: windows-latest
+          - os: windows-latest
             cibw-arch: win_amd64
-          # - runs-on: macos-latest
+          # - os: macos-latest
           #   cibw-arch: macosx_x86_64
-          # - runs-on: ubuntu-latest
+          # - os: ubuntu-latest
           #   cibw-arch: manylinux_i686
-          # - runs-on: windows-latest
+          # - os: windows-latest
           #   cibw-arch: win32
           #   python-arch: x86
           #   cmake-arch: -A Win32
