@@ -66,7 +66,7 @@ def create_tag(version_str, message="Tagged for release"):
             sys.exit()
     hexsha = repo.head.commit.hexsha
     print("Creating new tag: {} ; commit: {}".format(version_str, hexsha))
-    # new_tag = repo.create_tag(version_str), message=message)
+    new_tag = repo.create_tag(version_str, message=message)
     return version_str
     
 def main():
