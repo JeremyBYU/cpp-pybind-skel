@@ -92,7 +92,7 @@ jobs:
 
       - name: Build Wheels
         run: |
-          python3 -m cibuildwheel --output-dir wheelhouse
+          python -m cibuildwheel --output-dir wheelhouse
 
       - name: Show files
         run: ls -lh wheelhouse
