@@ -1,4 +1,5 @@
 numpy
+gitpython # for version bump script
 
 # Documentation Generation Packages
 jupyter

@@ -2,7 +2,7 @@
 
 file(STRINGS "${CMAKE_CURRENT_SOURCE_DIR}/version.txt" CPPLIB_VERSION_READ)
 foreach(ver ${CPPLIB_VERSION_READ})
-    if (ver MATCHES "CPPLIB_VERSION_(MAJOR|MINOR|PATCH) +([^ ]+)$")
+    if (ver MATCHES "(MAJOR|MINOR|PATCH) +([^ ]+)$")
         set(CPPLIB_VERSION_${CMAKE_MATCH_1} "${CMAKE_MATCH_2}" CACHE INTERNAL "")
     endif()
 endforeach()
