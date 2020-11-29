@@ -95,6 +95,7 @@ jobs:
           python -m cibuildwheel --output-dir wheelhouse
 
       - name: Show files
+        shell: bash
         run: ls -lh wheelhouse
 
       - name: Upload wheels
