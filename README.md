@@ -1,6 +1,6 @@
 # C++ and Python Library
 
-This is a template repository used to create  C++/Python libraries. This is for individual who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing others [work](#acknowledgements). 
+This is a template repository used to create  C++/Python libraries. This is for individual who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate world of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
 
 ## Key Features
 
@@ -8,11 +8,14 @@ This is a template repository used to create  C++/Python libraries. This is for 
 * Cross platform using Modern CMake.
 * Benchmark ([Nanobench](https://github.com/martinus/nanobench)) and Testing ([doctest](https://github.com/onqtam/doctest)) built in.
 * Good handling of thirdparty dependencies using CMake `FetchContent`.
-* Documentation for both C++ and Python created using Doxygen and Sphinx.
+* Documentation for both C++ and Python created using Sphinx, Doxygen, Breathe, and Exhale. The documentation is unified into one website.
+* Integration of CMake into `setup.py` so that `pip install` works for python users wanting to build manually (CMake must be installed still).
+    *  Note that the C++ Library and even the python extension can still be built with standard CMake procedures, see [Build with CMake](#build-manually-with-cmake)
+* Automatic building of python **binary** wheels using [github actions](https://docs.github.com/en/free-pro-team@latest/actions/learn-github-actions), see [Workflow](#workflow)
 
-This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I have previously used a `setup.py` file with `setuptools` to build the python extension. However I find that integrating it all in CMake leads to a much nicer *developer* experience. However external users *building* the library will need CMake installed which may be a consideration before using this template repo as a starting point.
+This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I find that integrating it all in CMake leads to a much nicer *developer* experience. External users *building* the library will need CMake installed which may be a consideration before using this template repo as a starting point. However, this repo has a github workflow setup to automatically build python **binary** wheels for you and upload to PyPI for a variety of python versions/OS/architectures! Please see [workflows](#workflows)
 
-## Instructions For Use
+## Instructions For Using Template
 
 1. `git clone https://github.com/JeremyBYU/cpp-pybind-skel.git`
 
@@ -29,7 +32,7 @@ A helper python script, `rename_project.py` is provided if desired.
 
 Note: you don't have to use the naming convention proposed above and may use any you would like. I think the most important thing is simply that the Python extension target is different then C++ library target.
 
-## Build
+## Build Manually with CMake
 
 Building happens entirely with CMake.
 
@@ -41,7 +44,7 @@ Building happens entirely with CMake.
 
 Build options:
 
-```txt
+```text
 CPPL_BUILD_BENCHMARKS:BOOL=ON // CPPL - Build Benchmarks
 CPPL_BUILD_EXAMPLES:BOOL=ON // CPPL - Build Examples
 CPPL_BUILD_PYMODULE:BOOL=ON // CPPL -Build Python Module
@@ -50,7 +53,9 @@ CPPL_BUILD_WERROR:BOOL=OFF // CPPL - Add Werror flag to build (turns warnings in
 CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 ```
 
-### Python
+### Python 
+
+This is meant for advanced python users who are actively developing the extension.
 
 1. Install [conda](https://conda.io/projects/conda/en/latest/) or create a python virtual environment ([Why?](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c)). I recommend conda for Windows users.
 2. Perform `CMake` build as described above
@@ -61,10 +66,30 @@ You can build a binary wheel that you can distribute to users with your **exact*
 
 1. `cmake --build . --target pip-package --config Release` 
 
-The wheel should then be at `cmake-build\lib\python_package\pip_package`.
+The wheel should then be at `cmake-build\lib\python_package\pip_package`. Note you can alternatively build using [Python setup.py](#build-manually-with-python)
 
-TODO - Master the intricate world of conda/pip distribution (multiplatform wheels, manylinux)...
+## Build Manually with Python
 
+The root directory `setup.py` file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.
+
+1. Install [conda](https://conda.io/projects/conda/en/latest/) or create a python virtual environment ([Why?](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c)). I recommend conda for Windows users.
+2. `pip install .` - Call from root directory
+
+That should be it!
+
+## Install with Python
+
+If you only care about installing the python extension you can install from the binary wheels generated by the github action workflows. The binary wheels are uploaded to PyPi. Therefore, after configuring the workflow and tagging a version, you can install as:
+
+1. `pip install cpplib` - Change `cpplib` to whatever your python extension will end up being.
+
+## Workflows
+
+Several github action workflows are included in this repository. The first is the binary wheel creation and uploading to pypi.
+
+### Binary Wheel
+
+This [workflow file](.github/wheels.yml) generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to `PyPI` and `PyPITest`. Please read [here](https://github.com/pypa/gh-action-pypi-publish) about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.
 ## Documentation
 
 C++ classes and functions are documented in their header files. Associated Python functions/classes which are bound with Pybind11 are *re-documented*. This is for two reasons:
@@ -82,9 +107,10 @@ Documentation building has been taken from Open3D with some small modification. 
 
 I have learned a lot by listening/watching/reading about C++. I can't list them all but the following links had the most influence in developing this repo.
 
-* [Open3D](https://github.com/intel-isl/Open3D) - Honestly most of this repo comes from following their practices.  After having made many C++/Python projects I find their structure to lead to a much better code design
-* [Modern CMake](https://cliutils.gitlab.io/modern-cmake/) - An invaluable resource which has taught me so much about CMake.
+* [Open3D](https://github.com/intel-isl/Open3D) - Much of this repo comes from following their practices.  After having made many C++/Python projects I find this code structure to be the best for hybrid projects.
+* [Modern CMake](https://cliutils.gitlab.io/modern-cmake/) - An invaluable resource which has taught me about CMake.
 * [Mapbox hpp-skel](https://github.com/mapbox/hpp-skel) - A great starting point for *header-only* libraries. Almost everything MapBox makes is gold to me.
+* [Parselmouth](https://github.com/YannickJadoul/Parselmouth) - A great resource on using github workflows!
 
 
 

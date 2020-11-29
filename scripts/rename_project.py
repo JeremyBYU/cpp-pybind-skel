@@ -14,7 +14,7 @@ CPPLIB_LOWERCASE = "cpplib"
 REPLACE_LIST = [CPPLIB_FULL_NAME, CPPLIB_FULL_NAME_CAPS,
                 CPPLIB_SHORT, CPPLIB_LOWERCASE]
 
-INCLUDE_FOLDERS = ["bench", "docs", "examples", "include", "src", "tests"]
+INCLUDE_FOLDERS = ["bench", "src_docs", "examples", "include", "src", "tests"]
 EXCLUDE_FOLDERS = ["_out", "cpp_api", "python_api"]
 
 
@@ -28,7 +28,7 @@ def parse_args():
                         help="Short acronym of Library (e.g., CPPL). Should be all uppercase.")
     parser.add_argument("--libname_python",
                         default=CPPLIB_LOWERCASE,
-                        help="Full name of Python Extesnion Library (e.g., cpplib). Should be lowercase.")
+                        help="Full name of Python Extension Library (e.g., cpplib). Should be lowercase.")
     args = parser.parse_args()
 
     return args

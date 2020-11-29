@@ -125,6 +125,7 @@ jobs:
           password: ${{ secrets.test_pypi_password }}
           packages_dir: wheelhouse/
           repository_url: https://test.pypi.org/legacy/
+          skip_existing: true
 
       # Publish to official pypi channel
       - name: Publish package to PyPI
@@ -134,4 +135,5 @@ jobs:
           user: __token__
           password: ${{ secrets.pypi_password }}
           packages_dir: wheelhouse/
+          skip_existing: true
 

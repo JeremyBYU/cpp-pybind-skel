@@ -1,0 +1,398 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Introducing CPPLib &mdash; CPPLib 1.0.1 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/language_data.js"></script>
+        <script src="_static/collapsible-lists\js\CollapsibleLists.compressed.js"></script>
+        <script src="_static/collapsible-lists\js\apply-collapsible-lists.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Building Documentation" href="builddocs.html" />
+    <link rel="prev" title="CPPLib: A Great CPPLib" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> CPPLib
+          
+
+          
+            
+            <img src="_static/CPPLib.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introducing CPPLib</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#c-and-python-library">C++ and Python Library</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#key-features">Key Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#instructions-for-using-template">Instructions For Using Template</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#rename-files">Rename Files</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-manually-with-cmake">Build Manually with CMake</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#c">C++</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#build-manually-with-python">Build Manually with Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#install-with-python">Install with Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">Workflows</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#binary-wheel">Binary Wheel</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#documentation-website-generation">Documentation Website Generation</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="builddocs.html">Building Documentation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorial</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/Python/index.html">Python</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tutorial/C++/index.html">C++</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Python API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="python_api/cpplib.html">cpplib</a></li>
+</ul>
+<p class="caption"><span class="caption-text">C++ API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="cpp_api/cpp_library_root.html">C++ Library API</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">CPPLib</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+      <li>Introducing CPPLib</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="introducing-cpplib">
+<span id="introduction"></span><h1>Introducing CPPLib<a class="headerlink" href="#introducing-cpplib" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="c-and-python-library">
+<h2>C++ and Python Library<a class="headerlink" href="#c-and-python-library" title="Permalink to this headline">¶</a></h2>
+<p>This is a template repository used to create  C++/Python libraries. This is for individual who want to write a <em>standalone</em> C++ library that can <em>also</em> be bound to Python using <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/">Pybind11</a> for better performance. This repository additionally takes care of the intricate world of building <strong>binary</strong> wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing <a class="reference external" href="#acknowledgements">others work</a>.</p>
+<div class="section" id="key-features">
+<h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>C++ Library is independent of Python Extension, i.e. can be dropped into pure C++ projects.</p></li>
+<li><p>Cross platform using Modern CMake.</p></li>
+<li><p>Benchmark (<a class="reference external" href="https://github.com/martinus/nanobench">Nanobench</a>) and Testing (<a class="reference external" href="https://github.com/onqtam/doctest">doctest</a>) built in.</p></li>
+<li><p>Good handling of thirdparty dependencies using CMake <code class="docutils literal notranslate"><span class="pre">FetchContent</span></code>.</p></li>
+<li><p>Documentation for both C++ and Python created using Sphinx, Doxygen, Breathe, and Exhale. The documentation is unified into one website.</p></li>
+<li><p>Integration of CMake into <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> so that <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span></code> works for python users wanting to build manually (CMake must be installed still).</p>
+<ul>
+<li><p>Note that the C++ Library and even the python extension can still be built with standard CMake procedures, see <a class="reference external" href="#build-manually-with-cmake">Build with CMake</a></p></li>
+</ul>
+</li>
+<li><p>Automatic building of python <strong>binary</strong> wheels using <a class="reference external" href="https://docs.github.com/en/free-pro-team&#64;latest/actions/learn-github-actions">github actions</a>, see <a class="reference external" href="#workflow">Workflow</a></p></li>
+</ul>
+<p>This repo relies upon using Modern CMake to build both the C++ and Python Extension libraries. I find that integrating it all in CMake leads to a much nicer <em>developer</em> experience. External users <em>building</em> the library will need CMake installed which may be a consideration before using this template repo as a starting point. However, this repo has a github workflow setup to automatically build python <strong>binary</strong> wheels for you and upload to PyPI for a variety of python versions/OS/architectures! Please see <a class="reference external" href="#workflows">workflows</a></p>
+</div>
+<div class="section" id="instructions-for-using-template">
+<h3>Instructions For Using Template<a class="headerlink" href="#instructions-for-using-template" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/JeremyBYU/cpp-pybind-skel.git</span></code></p></li>
+</ol>
+<div class="section" id="rename-files">
+<h4>Rename Files<a class="headerlink" href="#rename-files" title="Permalink to this headline">¶</a></h4>
+<p>You will want to rename files and library names with a simple <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">and</span> <span class="pre">replace</span></code> using your IDE/editor. Lets say you named your project <code class="docutils literal notranslate"><span class="pre">SimpleImageFilters</span></code> with an associates short acronym of <code class="docutils literal notranslate"><span class="pre">SIF</span></code> . Then simply find and replace in this repository the following (case sensitivity matters):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">CPPLib</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">SimpleImageFilters</span></code> - C++ Top Namespace and CMake Project Name</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CPPLIB</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">SIMPLEIMAGEFILTERS</span></code> - Same but uppercase, used in CMake</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CPPL</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">SIF</span></code> - Acronym used in CMake alias for project</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cpplib</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">simpleimagefilters</span></code> - Python Library Extension Name</p></li>
+</ul>
+<p>A helper python script, <code class="docutils literal notranslate"><span class="pre">rename_project.py</span></code> is provided if desired.</p>
+<p>Note: you don’t have to use the naming convention proposed above and may use any you would like. I think the most important thing is simply that the Python extension target is different then C++ library target.</p>
+</div>
+</div>
+<div class="section" id="build-manually-with-cmake">
+<h3>Build Manually with CMake<a class="headerlink" href="#build-manually-with-cmake" title="Permalink to this headline">¶</a></h3>
+<p>Building happens entirely with CMake.</p>
+<div class="section" id="c">
+<h4>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h4>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">cmake-build</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">cmake-build</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span></code> -  Note - For windows also add <code class="docutils literal notranslate"><span class="pre">-DCMAKE_GENERATOR_PLATFORM=x64</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span> <span class="pre">-j$(nproc)</span> <span class="pre">--config</span> <span class="pre">Release</span></code></p></li>
+</ol>
+<p>Build options:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CPPL_BUILD_BENCHMARKS:BOOL=ON // CPPL - Build Benchmarks
+CPPL_BUILD_EXAMPLES:BOOL=ON // CPPL - Build Examples
+CPPL_BUILD_PYMODULE:BOOL=ON // CPPL -Build Python Module
+CPPL_BUILD_TESTS:BOOL=ON // CPPL - Build Tests
+CPPL_BUILD_WERROR:BOOL=OFF // CPPL - Add Werror flag to build (turns warnings into errors)
+CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
+</pre></div>
+</div>
+</div>
+<div class="section" id="python">
+<h4>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
+<p>This is meant for advanced python users who are actively developing the extension.</p>
+<ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">CMake</span></code> build as described above</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">cmake-build</span> <span class="pre">&amp;&amp;</span> <span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span> <span class="pre">--target</span> <span class="pre">python-package</span> <span class="pre">--config</span> <span class="pre">Release</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">lib/python_package</span> <span class="pre">&amp;&amp;</span>&#160; <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></li>
+</ol>
+<p>You can build a binary wheel that you can distribute to users with your <strong>exact</strong> same platform by</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span> <span class="pre">--target</span> <span class="pre">pip-package</span> <span class="pre">--config</span> <span class="pre">Release</span></code></p></li>
+</ol>
+<p>The wheel should then be at <code class="docutils literal notranslate"><span class="pre">cmake-build\lib\python_package\pip_package</span></code>. Note you can alternatively build using <a class="reference external" href="#build-manually-with-python">Python setup.py</a></p>
+</div>
+</div>
+<div class="section" id="build-manually-with-python">
+<h3>Build Manually with Python<a class="headerlink" href="#build-manually-with-python" title="Permalink to this headline">¶</a></h3>
+<p>The root directory <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.</p>
+<ol class="arabic simple">
+<li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> - Call from root directory</p></li>
+</ol>
+<p>That should be it!</p>
+</div>
+<div class="section" id="install-with-python">
+<h3>Install with Python<a class="headerlink" href="#install-with-python" title="Permalink to this headline">¶</a></h3>
+<p>If you only care about installing the python extension you can install from the binary wheels generated by the github action workflows. The binary wheels are uploaded to PyPi. Therefore, after configuring the workflow and tagging a version, you can install as:</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">cpplib</span></code> - Change <code class="docutils literal notranslate"><span class="pre">cpplib</span></code> to whatever your python extension will end up being.</p></li>
+</ol>
+</div>
+<div class="section" id="id3">
+<h3>Workflows<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
+<p>Several github action workflows are included in this repository. The first is the binary wheel creation and uploading to pypi.</p>
+<div class="section" id="binary-wheel">
+<h4>Binary Wheel<a class="headerlink" href="#binary-wheel" title="Permalink to this headline">¶</a></h4>
+<p>This <a class="reference external" href=".github/wheels.yml">workflow file</a> generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PyPITest</span></code>. Please read <a class="reference external" href="https://github.com/pypa/gh-action-pypi-publish">here</a> about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.</p>
+</div>
+</div>
+<div class="section" id="documentation">
+<h3>Documentation<a class="headerlink" href="#documentation" title="Permalink to this headline">¶</a></h3>
+<p>C++ classes and functions are documented in their header files. Associated Python functions/classes which are bound with Pybind11 are <em>re-documented</em>. This is for two reasons:</p>
+<ol class="arabic simple">
+<li><p>The function/class API might actually be slightly different in arguments and return types (e.g., list vs. std::vector) and more detail/nuance may be desired in one form of the other.</p></li>
+<li><p>I have no idea how to share them.</p></li>
+</ol>
+<p>For Python, I am using this <a class="reference external" href="./src/Python/cpplib_pybind/docstring/docstring.hpp">method</a> to inject further documentation into functions/classes which was developed by <a class="reference external" href="https://github.com/intel-isl/Open3D">Intel at Open3D</a>. They provide a function that can transform an input <code class="docutils literal notranslate"><span class="pre">map</span></code> of arg/description pairs and convert to <a class="reference external" href="https://sphinxcontrib-napoleon.readthedocs.io/en/latest/example_google.html">Googles Python Docstring format</a>.</p>
+<div class="section" id="documentation-website-generation">
+<h4>Documentation Website Generation<a class="headerlink" href="#documentation-website-generation" title="Permalink to this headline">¶</a></h4>
+<p>Documentation building has been taken from Open3D with some small modification. Python <em>and</em> C++ documentation is generated using <code class="docutils literal notranslate"><span class="pre">Sphinx</span></code> into the <strong>same</strong> website. The C++ API is actually integrated into sphinx using <code class="docutils literal notranslate"><span class="pre">breathe/exhale</span></code>. Please see <code class="docutils literal notranslate"><span class="pre">docs/builddocs.rst</span></code>.</p>
+</div>
+</div>
+<div class="section" id="acknowledgements">
+<h3>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h3>
+<p>I have learned a lot by listening/watching/reading about C++. I can’t list them all but the following links had the most influence in developing this repo.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/intel-isl/Open3D">Open3D</a> - Much of this repo comes from following their practices.  After having made many C++/Python projects I find this code structure to be the best for hybrid projects.</p></li>
+<li><p><a class="reference external" href="https://cliutils.gitlab.io/modern-cmake/">Modern CMake</a> - An invaluable resource which has taught me about CMake.</p></li>
+<li><p><a class="reference external" href="https://github.com/mapbox/hpp-skel">Mapbox hpp-skel</a> - A great starting point for <em>header-only</em> libraries. Almost everything MapBox makes is gold to me.</p></li>
+<li><p><a class="reference external" href="https://github.com/YannickJadoul/Parselmouth">Parselmouth</a> - A great resource on using github workflows!</p></li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="builddocs.html" class="btn btn-neutral float-right" title="Building Documentation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="CPPLib: A Great CPPLib" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2020, Jeremy Castagno
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
