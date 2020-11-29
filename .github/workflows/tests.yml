@@ -41,7 +41,12 @@ jobs:
         run: |
           python setup.py sdist -d wheelhouse
 
+      - name: Show files
+        shell: bash
+        run: ls -lh wheelhouse
+
       - name: Install from sdist
+        shell: bash
         run: |
           pip install wheelhouse/*.tar.gz
   
