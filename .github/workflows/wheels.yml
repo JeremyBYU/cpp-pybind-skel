@@ -14,7 +14,6 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-      matrix:
         include:
           - os: ubuntu-latest
             cibw-arch: manylinux_x86_64
