@@ -21,6 +21,12 @@ class CMakeExtension(Extension):
         Extension.__init__(self, name, sources=[])
         self.sourcedir = os.path.abspath(sourcedir)
 
+
+# Read requirements.txt
+with open('requirements.txt', 'r') as f:
+    lines = f.readlines()
+install_requires = [line.strip() for line in lines if line]
+
 # Read Version
 with open('src/version.txt', 'r') as f:
     lines = f.readlines()
@@ -128,6 +134,7 @@ setup(
     author="Jeremy Castagno",
     author_email="jeremybyu@gmail.com",
     description="Test CPPLib integration",
+    url='https://github.com/JeremyBYU/cpp-pybind-skel',
     long_description=open('README.md').read(),
     long_description_content_type='text/markdown',
     license="MIT",
@@ -135,6 +142,7 @@ setup(
     packages=['cpplib'],
     package_dir={'':'src/Python'},
     ext_modules=[CMakeExtension("cpplib_pybind")],
+    install_requires=install_requires,
     cmdclass={"build_ext": CMakeBuild},
     zip_safe=False,
 )

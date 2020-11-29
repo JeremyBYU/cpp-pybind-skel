@@ -1,0 +1,50 @@
+name: Run Tests
+
+on:
+  push:
+    branches:
+      - master
+      - dev
+    tags:
+      - v*
+env:
+  NPROC: 2
+
+jobs:
+
+  # Create Source Distribution and upload artifacts
+  python_test:
+    runs-on: ${{ matrix.os }}
+    name: Binary Wheels
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ['ubuntu-latest', 'windows-latest']
+        python-version: ['3.6', '3.7', '3.8', '3.8' ]
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+
+      - name: Setup CMake
+        uses: jwlawson/actions-setup-cmake@v1.4
+
+      - name: Install requirements
+        run: pip install --user pytest
+
+      - name: Build sdist
+        run: |
+          python setup.py sdist -d wheelhouse
+
+      - name: Install from sdist
+        run: |
+          pip install --user wheelhouse/*.tar.gz
+  
+      - name: Run Tests
+        run: |
+          pytest
