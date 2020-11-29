@@ -1,9 +1,8 @@
-# ----------------------------------------------------------------------------
-# -                        Open3D: www.open3d.org                            -
-# ----------------------------------------------------------------------------
 # The MIT License (MIT)
 #
 # Copyright (c) 2018 www.open3d.org, 2020 Jeremy Castagno
+#
+# This script comes form Open3D with some small modifications (using breathe for C++ API)
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -40,12 +39,14 @@ import sys
 import multiprocessing
 import importlib
 import os
-from inspect import getmembers, isbuiltin, isclass, ismodule
+from inspect import getmembers, isbuiltin, isclass, ismodule, isfunction
 import shutil
 import warnings
 import weakref
 from tempfile import mkdtemp
 import re
+
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def _create_or_clear_dir(dir_path):
@@ -54,6 +55,12 @@ def _create_or_clear_dir(dir_path):
         print("Removed directory %s" % dir_path)
     os.makedirs(dir_path)
     print("Created directory %s" % dir_path)
+
+
+def remove_dir(directory):
+    if os.path.exists(directory):
+        shutil.rmtree(directory)
+        print("Removed directory %s" % directory)
 
 
 class PyAPIDocsBuilder:
@@ -76,10 +83,10 @@ class PyAPIDocsBuilder:
     def generate_rst(self):
         _create_or_clear_dir(self.output_dir)
 
-        for module_name in self.module_names:
+        for module_name, module_type in self.module_names:
             module = self._get_cpplib_module(module_name)
             PyAPIDocsBuilder._generate_sub_module_class_function_docs(
-                module_name, module, self.output_dir)
+                module_name, module, module_type, self.output_dir)
 
     @staticmethod
     def _get_cpplib_module(full_module_name):
@@ -178,7 +185,7 @@ class PyAPIDocsBuilder:
 
     @staticmethod
     def _generate_sub_module_class_function_docs(sub_module_full_name,
-                                                 sub_module, output_dir):
+                                                 sub_module, module_type, output_dir):
         print("Generating docs for submodule: %s" % sub_module_full_name)
 
         # Class docs
@@ -192,9 +199,14 @@ class PyAPIDocsBuilder:
                                                  class_name, output_path)
 
         # Function docs
-        function_names = [
-            obj[0] for obj in getmembers(sub_module) if isbuiltin(obj[1])
-        ]
+        if module_type == '':
+            function_names = [
+                obj[0] for obj in getmembers(sub_module) if isbuiltin(obj[1])
+            ]
+        else:
+            function_names = [
+                obj[0] for obj in getmembers(sub_module) if isfunction(obj[1]) and obj[1].__module__ == sub_module.__name__
+            ]
         for function_name in function_names:
             file_name = "%s.%s.rst" % (sub_module_full_name, function_name)
             output_path = os.path.join(output_dir, file_name)
@@ -219,7 +231,7 @@ class SphinxDocsBuilder:
     (3) Calls `sphinx-build` with the user argument
     """
 
-    def __init__(self, html_output_dir, is_release):
+    def __init__(self, html_output_dir, is_release=True):
 
         # Get the modules for which we want to build the documentation.
         # We use the modules listed in the index.rst file here.
@@ -237,9 +249,11 @@ class SphinxDocsBuilder:
         module_names = []
         with open('index.rst', 'r') as f:
             for line in f:
-                m = re.match('^\s*python_api/(.*)\s*$', line)
+                m = re.match(
+                    '\s*MAKE_DOCS/python_api/([^\s]*)\s*(.*)\s*$', line)
+                # m = re.match('^\s*python_api/(.*)\s*$', line)
                 if m:
-                    module_names.append(m.group(1))
+                    module_names.append((m.group(1), m.group(2)))
         return module_names
 
     def run(self):
@@ -266,7 +280,7 @@ class SphinxDocsBuilder:
         if self.is_release:
             version_list = [
                 line.rstrip('\n').split(' ')[1]
-                for line in open('../src/cpplib/version.txt')
+                for line in open('../src/version.txt')
             ]
             release_version = '.'.join(version_list[:3])
             print("Building docs for release:", release_version)
@@ -303,13 +317,18 @@ if __name__ == "__main__":
     parser.add_argument("--sphinx",
                         dest="build_sphinx",
                         action="store_true",
-                        default=False,
+                        default=True,
                         help="Build Sphinx for main docs and Python API docs.")
-    parser.add_argument("--is_release",
-                        dest="is_release",
+    parser.add_argument("--clean",
+                        dest="clean",
                         action="store_true",
-                        default=False,
-                        help="Show cpplib version number rather than git hash.")
+                        default=True,
+                        help="Clean directories before creating")
+    parser.add_argument("--copy",
+                        dest="copy",
+                        action="store_true",
+                        default=True,
+                        help="Copy HTML website to docs folder")
     args = parser.parse_args()
 
     pwd = os.path.dirname(os.path.realpath(__file__))
@@ -324,11 +343,27 @@ if __name__ == "__main__":
         shutil.rmtree(cpp_build_dir)
         print("Removed directory %s" % cpp_build_dir)
 
+    if args.clean:
+        for directory in [os.path.join(THIS_DIR, '_out'), os.path.join(THIS_DIR, 'cpp_api'),
+                          os.path.join(THIS_DIR, 'python_api'), os.path.join(THIS_DIR, '_build')]:
+            remove_dir(directory)
+
     # Sphinx is hard-coded to build with the "html" option
     # To customize build, run sphinx-build manually
     if args.build_sphinx:
         print("Sphinx build enabled")
-        sdb = SphinxDocsBuilder(html_output_dir, args.is_release)
+        sdb = SphinxDocsBuilder(html_output_dir)
         sdb.run()
     else:
         print("Sphinx build disabled, use --sphinx to enable")
+
+    if args.copy:
+        html_out = os.path.join(pwd, "_out", "html")
+        doc_folder = os.path.join(pwd, '..', 'docs')
+        if os.path.exists(doc_folder):
+            print("Removing old docs folder")
+            shutil.rmtree(doc_folder)
+        print("Copying Folder")
+        shutil.copytree(html_out, doc_folder)
+        shutil.copy(os.path.join(pwd, '.nojekyll'),
+                    os.path.join(doc_folder, '.nojekyll'))

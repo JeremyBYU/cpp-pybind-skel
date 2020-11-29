@@ -1,9 +1,15 @@
-# Documentation
-docs/python_api
-docs/cpp_api
-docs/_out
+# Documentation Sphinx
+src_docs/_build
+src_docs/_out
+src_docs/cpp_api
+src_docs/python_api
+docs/.doctrees
+docs/.buildinfo
+docs/_sources
+docds/objects.inv
 
 
+# build directories
 scratch
 cmake-build
 cmake-build-linux

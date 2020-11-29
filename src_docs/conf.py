@@ -52,7 +52,7 @@ sys.path.insert(
 # ones.
 extensions = [
     'sphinx.ext.mathjax', 'sphinx.ext.autodoc', 'sphinx.ext.autosummary',
-    'sphinx.ext.napoleon', 'breathe', 'exhale'
+    'sphinx.ext.napoleon', 'breathe', 'exhale', 'm2r', 'nbsphinx','nbsphinx_link',
 ]
 
 # Setup the breathe extension
@@ -91,8 +91,8 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'CPPLib'
-copyright = u'2020, Author'
-author = u'Author'
+copyright = u'2020, Jeremy Castagno'
+author = u'Jeremy Castagno'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -134,6 +134,7 @@ todo_include_todos = False
 html_theme = "sphinx_rtd_theme"
 # html_theme_path = [theme_path]
 html_favicon = ""
+html_logo = '_static/CPPLib.png'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -207,8 +208,8 @@ man_pages = [(master_doc, 'cpplib', u'CPPLib Documentation', [author], 1)]
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'CPPLib', u'CPPLib Documentation', author, 'CPPLib',
-     'One line description of project.', 'Miscellaneous'),
+    (master_doc, 'cpplib', u'CPPLib Documentation', author, 'CPPLib',
+     'Basic Python and CPP Library', 'Miscellaneous'),
 ]
 
 # Version 0: Added by Jaesik to list Python members using the source order

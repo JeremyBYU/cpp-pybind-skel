@@ -18,6 +18,8 @@ CPPLib: A Great CPPLib
     Contents:
 
 .. toctree::
+    :maxdepth: 1
+    :caption: Getting Started
 
     introduction
     builddocs
@@ -39,6 +41,10 @@ CPPLib: A Great CPPLib
     :caption: Python API
 
     python_api/cpplib
+
+..
+    Please put the module and meta data you want here!
+    MAKE_DOCS/python_api/cpplib
 
 .. _cpp_api_index:
 
