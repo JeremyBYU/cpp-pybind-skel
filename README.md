@@ -1,6 +1,6 @@
 # C++ and Python Library
 
-This is a template repository used to create  C++/Python libraries. This is for individual who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate world of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
+This is a template repository used to create  C++/Python libraries. This is for individuals who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate world of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
 
 ## Key Features
 
@@ -92,11 +92,11 @@ Several github action workflows are included in this repository. The first is th
 
 ### Binary Wheel
 
-This [workflow file](.github/wheels.yml) generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to `PyPI` and `PyPITest`. Please read [here](https://github.com/pypa/gh-action-pypi-publish) about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.
+This [workflow file](.github/workflows/wheels.yml) generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to `PyPI` and `PyPITest`. Please read [here](https://github.com/pypa/gh-action-pypi-publish) about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.
 
 ### Tests
 
-Automatic testing is also done using this [test workflow file](.github/tests.yml) 
+Automatic testing is also done using this [test workflow file](.github/workflows/tests.yml) 
 ## Documentation
 
 C++ classes and functions are documented in their header files. Associated Python functions/classes which are bound with Pybind11 are *re-documented*. This is for two reasons:
