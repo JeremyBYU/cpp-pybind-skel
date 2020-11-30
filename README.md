@@ -124,6 +124,8 @@ These are the release steps that I perform to create a release.
 6. `python scripts/manage_versions.py --tag`
 7. `git push origin dev --tags`
 
+A helper script is created [here](./scripts/make_release.sh)
+
 ## FAQ
 
 ###
