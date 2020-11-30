@@ -4,7 +4,6 @@
 ![Run Tests](https://github.com/JeremyBYU/cpp-pybind-skel/workflows/Run%20Tests/badge.svg)
 [![Docs](https://img.shields.io/badge/API-docs-blue)](https://jeremybyu.github.io/cpp-pybind-skel/)
 [![License](https://img.shields.io/pypi/l/cpplib.svg)](https://github.com/JeremyBYU/cpp-pybind-skel/blob/master/LICENSE)
-<!-- [![Launch Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/YannickJadoul/Parselmouth/master?urlpath=lab%2Ftree%2Fdocs%2Fexamples) -->
 
 This is a template repository used to create  C++/Python libraries. This is for individuals who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate world of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
 
@@ -116,7 +115,6 @@ For Python, I am using this [method](./src/Python/cpplib_pybind/docstring/docstr
 ### Documentation Website Generation
 
 Documentation building has been taken from Open3D with some small modification. Python *and* C++ documentation is generated using `Sphinx` into the **same** website. The C++ API is actually integrated into sphinx using `breathe/exhale`. Please see `docs/builddocs.rst`.
-
 
 ## Release Steps
 
