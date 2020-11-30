@@ -39,7 +39,7 @@ You can build the project manually in two ways: one in pure CMake, the other usi
 
 Building happens entirely with CMake. This is meant really only for the library developers who are working on C++ and Python in an edit-compile cycle.
 
-#### C++
+#### C++ Library
 
 1. `mkdir cmake-build && cd cmake-build` 
 2. `cmake ..` -  Note - For windows also add `-DCMAKE_GENERATOR_PLATFORM=x64` 
@@ -56,24 +56,25 @@ CPPL_BUILD_WERROR:BOOL=OFF // CPPL - Add Werror flag to build (turns warnings in
 CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 ```
 
-#### Python 
+#### Python Extension
 
 This is meant for advanced python users who are actively developing the extension.
 
 1. Install [conda](https://conda.io/projects/conda/en/latest/) or create a python virtual environment ([Why?](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c)). I recommend conda for Windows users.
 2. Perform `CMake` build as described above
 3. `cd cmake-build && cmake --build . --target python-package --config Release` 
-4. `cd lib/python_package &&  pip install -e .` 
+4. `cd lib/python_package &&  pip install -e .` . This installs the library in develop/edit mode. To update the python extension in your python virtual environment all you need to do is run step 3 again.
 
-You can build a binary wheel that you can distribute to users with your **exact** same platform by
+<!-- You can build a binary wheel that you can distribute to users with your **exact** same platform by
 
-1. `cmake --build . --target pip-package --config Release` 
+1. `cmake --build . --target pip-package --config Release`  -->
 
-The wheel should then be at `cmake-build\lib\python_package\pip_package`. Note you can alternatively build using [Python setup.py](#build-manually-with-python)
+<!-- The wheel should then be at `cmake-build\lib\python_package\pip_package`.  -->
+Note you can alternatively build using [Python setup.py](#build-manually-with-python)
 
 ### Build Manually with Python
 
-The root directory `setup.py` file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.
+The root directory [setup.py](setup.py) file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.
 
 1. Install [conda](https://conda.io/projects/conda/en/latest/) or create a python virtual environment ([Why?](https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c)). I recommend conda for Windows users.
 2. `pip install .` - Call from root directory

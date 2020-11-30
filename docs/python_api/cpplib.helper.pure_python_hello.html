@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>cpplib &mdash; CPPLib 1.0.5 documentation</title>
+  <title>cpplib.helper.pure_python_hello &mdash; CPPLib 1.0.5 documentation</title>
   
 
   
@@ -39,8 +39,8 @@
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="cpplib.VectorDouble" href="cpplib.VectorDouble.html" />
-    <link rel="prev" title="C++ interface" href="../tutorial/C++/basic.html" /> 
+    <link rel="next" title="C++ Library API" href="../cpp_api/cpp_library_root.html" />
+    <link rel="prev" title="cpplib.helper" href="cpplib.helper.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -103,18 +103,11 @@
 </ul>
 <p class="caption"><span class="caption-text">Python API</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">cpplib</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.VectorDouble.html">VectorDouble</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.VectorInt.html">VectorInt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.VectorULongInt.html">VectorULongInt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.get_cpplib_version.html">get_cpplib_version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.hello.html">hello</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.multiply_by_scalar_double.html">multiply_by_scalar_double</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.multiply_by_scalar_int.html">multiply_by_scalar_int</a></li>
-<li class="toctree-l2"><a class="reference internal" href="cpplib.multiply_by_scalar_size_t.html">multiply_by_scalar_size_t</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cpplib.html">cpplib</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="cpplib.helper.html">cpplib.helper</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pure_python_hello</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="cpplib.helper.html">cpplib.helper</a></li>
 </ul>
 <p class="caption"><span class="caption-text">C++ API</span></p>
 <ul>
@@ -164,7 +157,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>cpplib</li>
+          <li><a href="cpplib.helper.html">cpplib.helper</a> &raquo;</li>
+        
+      <li>cpplib.helper.pure_python_hello</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -205,52 +200,19 @@
     text-align: unset;
 }
 </style>
-<div class="section" id="cpplib">
-<h1>cpplib<a class="headerlink" href="#cpplib" title="Permalink to this headline">¶</a></h1>
-<p><strong>Classes</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="cpplib.VectorDouble.html#cpplib.VectorDouble" title="cpplib.VectorDouble"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VectorDouble</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cpplib.VectorInt.html#cpplib.VectorInt" title="cpplib.VectorInt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VectorInt</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cpplib.VectorULongInt.html#cpplib.VectorULongInt" title="cpplib.VectorULongInt"><code class="xref py py-obj docutils literal notranslate"><span class="pre">VectorULongInt</span></code></a></p></td>
-<td><p></p></td>
-</tr>
-</tbody>
-</table>
-<p><strong>Functions</strong></p>
-<table class="longtable docutils align-default">
-<colgroup>
-<col style="width: 10%" />
-<col style="width: 90%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="cpplib.get_cpplib_version.html#cpplib.get_cpplib_version" title="cpplib.get_cpplib_version"><code class="xref py py-obj docutils literal notranslate"><span class="pre">get_cpplib_version</span></code></a>()</p></td>
-<td><p>Get CPPLib Version</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cpplib.hello.html#cpplib.hello" title="cpplib.hello"><code class="xref py py-obj docutils literal notranslate"><span class="pre">hello</span></code></a>(name)</p></td>
-<td><p>Says hello to name</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cpplib.multiply_by_scalar_double.html#cpplib.multiply_by_scalar_double" title="cpplib.multiply_by_scalar_double"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiply_by_scalar_double</span></code></a>(vec, scalar)</p></td>
-<td><p>Multiplies a double vector</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="cpplib.multiply_by_scalar_int.html#cpplib.multiply_by_scalar_int" title="cpplib.multiply_by_scalar_int"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiply_by_scalar_int</span></code></a>(vec, scalar)</p></td>
-<td><p>Multiplies an int vector</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="cpplib.multiply_by_scalar_size_t.html#cpplib.multiply_by_scalar_size_t" title="cpplib.multiply_by_scalar_size_t"><code class="xref py py-obj docutils literal notranslate"><span class="pre">multiply_by_scalar_size_t</span></code></a>(vec, scalar)</p></td>
-<td><p>Multiplies a size_t vector</p></td>
-</tr>
-</tbody>
-</table>
-<div class="toctree-wrapper compound">
-</div>
+<div class="section" id="cpplib-helper-pure-python-hello">
+<h1>cpplib.helper.pure_python_hello<a class="headerlink" href="#cpplib-helper-pure-python-hello" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="cpplib.helper.pure_python_hello">
+<code class="sig-prename descclassname">cpplib.helper.</code><code class="sig-name descname">pure_python_hello</code><span class="sig-paren">(</span><em class="sig-param">name: str</em><span class="sig-paren">)</span><a class="headerlink" href="#cpplib.helper.pure_python_hello" title="Permalink to this definition">¶</a></dt>
+<dd><p>Testing a pure python function</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Just a simple name</p>
+</dd>
+</dl>
+</dd></dl>
+
 </div>
 
 
@@ -261,10 +223,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="cpplib.VectorDouble.html" class="btn btn-neutral float-right" title="cpplib.VectorDouble" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../cpp_api/cpp_library_root.html" class="btn btn-neutral float-right" title="C++ Library API" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../tutorial/C++/basic.html" class="btn btn-neutral float-left" title="C++ interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="cpplib.helper.html" class="btn btn-neutral float-left" title="cpplib.helper" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introducing CPPLib &mdash; CPPLib 1.0.4 documentation</title>
+  <title>Introducing CPPLib &mdash; CPPLib 1.0.5 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.4
+                1.0.5
               </div>
             
           
@@ -133,6 +133,7 @@
 <p class="caption"><span class="caption-text">Python API</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="python_api/cpplib.html">cpplib</a></li>
+<li class="toctree-l1"><a class="reference internal" href="python_api/cpplib.helper.html">cpplib.helper</a></li>
 </ul>
 <p class="caption"><span class="caption-text">C++ API</span></p>
 <ul>
@@ -227,7 +228,7 @@
 <span id="introduction"></span><h1>Introducing CPPLib<a class="headerlink" href="#introducing-cpplib" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="c-and-python-library">
 <h2>C++ and Python Library<a class="headerlink" href="#c-and-python-library" title="Permalink to this headline">¶</a></h2>
-<p>This is a template repository used to create  C++/Python libraries. This is for individual who want to write a <em>standalone</em> C++ library that can <em>also</em> be bound to Python using <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/">Pybind11</a> for better performance. This repository additionally takes care of the intricate world of building <strong>binary</strong> wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing <a class="reference external" href="#acknowledgements">others work</a>.</p>
+<p>This is a template repository used to create  C++/Python libraries. This is for individuals who want to write a <em>standalone</em> C++ library that can <em>also</em> be bound to Python using <a class="reference external" href="https://pybind11.readthedocs.io/en/stable/">Pybind11</a> for better performance. This repository additionally takes care of the intricate world of building <strong>binary</strong> wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing <a class="reference external" href="#acknowledgements">others work</a>.</p>
 <div class="section" id="key-features">
 <h3>Key Features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
@@ -269,8 +270,8 @@
 <div class="section" id="build-manually-with-cmake">
 <h4>Build Manually With CMake<a class="headerlink" href="#build-manually-with-cmake" title="Permalink to this headline">¶</a></h4>
 <p>Building happens entirely with CMake. This is meant really only for the library developers who are working on C++ and Python in an edit-compile cycle.</p>
-<div class="section" id="c">
-<h5>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="c-library">
+<h5>C++ Library<a class="headerlink" href="#c-library" title="Permalink to this headline">¶</a></h5>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">cmake-build</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">cmake-build</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span></code> -  Note - For windows also add <code class="docutils literal notranslate"><span class="pre">-DCMAKE_GENERATOR_PLATFORM=x64</span></code></p></li>
@@ -286,25 +287,24 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 </pre></div>
 </div>
 </div>
-<div class="section" id="python">
-<h5>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h5>
+<div class="section" id="python-extension">
+<h5>Python Extension<a class="headerlink" href="#python-extension" title="Permalink to this headline">¶</a></h5>
 <p>This is meant for advanced python users who are actively developing the extension.</p>
 <ol class="arabic simple">
 <li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">CMake</span></code> build as described above</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">cmake-build</span> <span class="pre">&amp;&amp;</span> <span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span> <span class="pre">--target</span> <span class="pre">python-package</span> <span class="pre">--config</span> <span class="pre">Release</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">lib/python_package</span> <span class="pre">&amp;&amp;</span>&#160; <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">lib/python_package</span> <span class="pre">&amp;&amp;</span>&#160; <span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span></code> . This installs the library in develop/edit mode. To update the python extension in your python virtual environment all you need to do is run step 3 again.</p></li>
 </ol>
-<p>You can build a binary wheel that you can distribute to users with your <strong>exact</strong> same platform by</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">--build</span> <span class="pre">.</span> <span class="pre">--target</span> <span class="pre">pip-package</span> <span class="pre">--config</span> <span class="pre">Release</span></code></p></li>
-</ol>
-<p>The wheel should then be at <code class="docutils literal notranslate"><span class="pre">cmake-build\lib\python_package\pip_package</span></code>. Note you can alternatively build using <a class="reference external" href="#build-manually-with-python">Python setup.py</a></p>
+<!-- You can build a binary wheel that you can distribute to users with your **exact** same platform by
+
+1. `cmake --build . --target pip-package --config Release`  --><p><span class="raw-html-m2r"><!-- The wheel should then be at `cmake-build\lib\python_package\pip_package</span>.  –&gt;`
+Note you can alternatively build using <a class="reference external" href="#build-manually-with-python">Python setup.py</a></p>
 </div>
 </div>
 <div class="section" id="build-manually-with-python">
 <h4>Build Manually with Python<a class="headerlink" href="#build-manually-with-python" title="Permalink to this headline">¶</a></h4>
-<p>The root directory <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.</p>
+<p>The root directory <a class="reference external" href="setup.py">setup.py</a> file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.</p>
 <ol class="arabic simple">
 <li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> - Call from root directory</p></li>
@@ -324,11 +324,11 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 <p>Several github action workflows are included in this repository. The first is the binary wheel creation and uploading to pypi.</p>
 <div class="section" id="binary-wheel">
 <h4>Binary Wheel<a class="headerlink" href="#binary-wheel" title="Permalink to this headline">¶</a></h4>
-<p>This <a class="reference external" href=".github/wheels.yml">workflow file</a> generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PyPITest</span></code>. Please read <a class="reference external" href="https://github.com/pypa/gh-action-pypi-publish">here</a> about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.</p>
+<p>This <a class="reference external" href=".github/workflows/wheels.yml">workflow file</a> generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PyPITest</span></code>. Please read <a class="reference external" href="https://github.com/pypa/gh-action-pypi-publish">here</a> about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.</p>
 </div>
 <div class="section" id="tests">
 <h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
-<p>Automatic testing is also done using this <a class="reference external" href=".github/tests.yml">test workflow file</a></p>
+<p>Automatic testing is also done using this <a class="reference external" href=".github/workflows/tests.yml">test workflow file</a></p>
 </div>
 </div>
 <div class="section" id="documentation">

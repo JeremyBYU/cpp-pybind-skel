@@ -82,7 +82,6 @@ class PyAPIDocsBuilder:
 
     def generate_rst(self):
         _create_or_clear_dir(self.output_dir)
-
         for module_name, module_type in self.module_names:
             module = self._get_cpplib_module(module_name)
             PyAPIDocsBuilder._generate_sub_module_class_function_docs(
@@ -199,13 +198,13 @@ class PyAPIDocsBuilder:
                                                  class_name, output_path)
 
         # Function docs
-        if module_type == '':
+        if module_type == 'python_only':
             function_names = [
-                obj[0] for obj in getmembers(sub_module) if isbuiltin(obj[1])
+                obj[0] for obj in getmembers(sub_module) if isfunction(obj[1]) and obj[1].__module__ == sub_module.__name__
             ]
         else:
             function_names = [
-                obj[0] for obj in getmembers(sub_module) if isfunction(obj[1]) and obj[1].__module__ == sub_module.__name__
+                obj[0] for obj in getmembers(sub_module) if isbuiltin(obj[1])
             ]
         for function_name in function_names:
             file_name = "%s.%s.rst" % (sub_module_full_name, function_name)
