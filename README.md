@@ -28,15 +28,18 @@ You will want to rename files and library names with a simple `find and replace`
 * `CPPL` -> `SIF` - Acronym used in CMake alias for project
 * `cpplib` -> `simpleimagefilters` - Python Library Extension Name
 
-A helper python script, `rename_project.py` is provided if desired. 
+A helper python script, `rename_project.py` is provided if desired. I would recommend using it because it saves a lot of time.
 
 Note: you don't have to use the naming convention proposed above and may use any you would like. I think the most important thing is simply that the Python extension target is different then C++ library target.
 
-## Build Manually with CMake
+## Build Project Manually
 
-Building happens entirely with CMake.
+You can build the project manually in two ways: one in pure CMake, the other using python `setup.py`.
+### Build Manually With CMake
 
-### C++
+Building happens entirely with CMake. This is meant really only for the library developers who are working on C++ and Python in an edit-compile cycle.
+
+#### C++
 
 1. `mkdir cmake-build && cd cmake-build` 
 2. `cmake ..` -  Note - For windows also add `-DCMAKE_GENERATOR_PLATFORM=x64` 
@@ -53,7 +56,7 @@ CPPL_BUILD_WERROR:BOOL=OFF // CPPL - Add Werror flag to build (turns warnings in
 CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 ```
 
-### Python 
+#### Python 
 
 This is meant for advanced python users who are actively developing the extension.
 
@@ -68,7 +71,7 @@ You can build a binary wheel that you can distribute to users with your **exact*
 
 The wheel should then be at `cmake-build\lib\python_package\pip_package`. Note you can alternatively build using [Python setup.py](#build-manually-with-python)
 
-## Build Manually with Python
+### Build Manually with Python
 
 The root directory `setup.py` file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.
 
@@ -90,6 +93,10 @@ Several github action workflows are included in this repository. The first is th
 ### Binary Wheel
 
 This [workflow file](.github/wheels.yml) generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to `PyPI` and `PyPITest`. Please read [here](https://github.com/pypa/gh-action-pypi-publish) about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.
+
+### Tests
+
+Automatic testing is also done using this [test workflow file](.github/tests.yml) 
 ## Documentation
 
 C++ classes and functions are documented in their header files. Associated Python functions/classes which are bound with Pybind11 are *re-documented*. This is for two reasons:
@@ -105,6 +112,8 @@ Documentation building has been taken from Open3D with some small modification. 
 
 
 ## Release Steps
+
+These are the release steps that I perform to create a release.
 
 1. Make all necessary changes
 2. `python scripts/manage_versions.py --bump patch`

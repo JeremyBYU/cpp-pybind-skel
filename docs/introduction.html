@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Introducing CPPLib &mdash; CPPLib 1.0.3 documentation</title>
+  <title>Introducing CPPLib &mdash; CPPLib 1.0.4 documentation</title>
   
 
   
@@ -67,7 +67,7 @@
             
             
               <div class="version">
-                1.0.3
+                1.0.4
               </div>
             
           
@@ -100,15 +100,15 @@
 <li class="toctree-l4"><a class="reference internal" href="#rename-files">Rename Files</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#build-manually-with-cmake">Build Manually with CMake</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#c">C++</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#python">Python</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-project-manually">Build Project Manually</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#build-manually-with-cmake">Build Manually With CMake</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#build-manually-with-python">Build Manually with Python</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#build-manually-with-python">Build Manually with Python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#install-with-python">Install with Python</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">Workflows</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#binary-wheel">Binary Wheel</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#tests">Tests</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#documentation">Documentation</a><ul>
@@ -259,15 +259,18 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">CPPL</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">SIF</span></code> - Acronym used in CMake alias for project</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cpplib</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">simpleimagefilters</span></code> - Python Library Extension Name</p></li>
 </ul>
-<p>A helper python script, <code class="docutils literal notranslate"><span class="pre">rename_project.py</span></code> is provided if desired.</p>
+<p>A helper python script, <code class="docutils literal notranslate"><span class="pre">rename_project.py</span></code> is provided if desired. I would recommend using it because it saves a lot of time.</p>
 <p>Note: you don’t have to use the naming convention proposed above and may use any you would like. I think the most important thing is simply that the Python extension target is different then C++ library target.</p>
 </div>
 </div>
+<div class="section" id="build-project-manually">
+<h3>Build Project Manually<a class="headerlink" href="#build-project-manually" title="Permalink to this headline">¶</a></h3>
+<p>You can build the project manually in two ways: one in pure CMake, the other using python <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>.</p>
 <div class="section" id="build-manually-with-cmake">
-<h3>Build Manually with CMake<a class="headerlink" href="#build-manually-with-cmake" title="Permalink to this headline">¶</a></h3>
-<p>Building happens entirely with CMake.</p>
+<h4>Build Manually With CMake<a class="headerlink" href="#build-manually-with-cmake" title="Permalink to this headline">¶</a></h4>
+<p>Building happens entirely with CMake. This is meant really only for the library developers who are working on C++ and Python in an edit-compile cycle.</p>
 <div class="section" id="c">
-<h4>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h4>
+<h5>C++<a class="headerlink" href="#c" title="Permalink to this headline">¶</a></h5>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">mkdir</span> <span class="pre">cmake-build</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">cmake-build</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">..</span></code> -  Note - For windows also add <code class="docutils literal notranslate"><span class="pre">-DCMAKE_GENERATOR_PLATFORM=x64</span></code></p></li>
@@ -284,7 +287,7 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 </div>
 </div>
 <div class="section" id="python">
-<h4>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h4>
+<h5>Python<a class="headerlink" href="#python" title="Permalink to this headline">¶</a></h5>
 <p>This is meant for advanced python users who are actively developing the extension.</p>
 <ol class="arabic simple">
 <li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
@@ -300,13 +303,14 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 </div>
 </div>
 <div class="section" id="build-manually-with-python">
-<h3>Build Manually with Python<a class="headerlink" href="#build-manually-with-python" title="Permalink to this headline">¶</a></h3>
+<h4>Build Manually with Python<a class="headerlink" href="#build-manually-with-python" title="Permalink to this headline">¶</a></h4>
 <p>The root directory <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> file has been modified to build with CMake. This is meant for python users that need to build manually (for some reason) but are not actively developing or changing the code.</p>
 <ol class="arabic simple">
 <li><p>Install <a class="reference external" href="https://conda.io/projects/conda/en/latest/">conda</a> or create a python virtual environment (<a class="reference external" href="https://medium.freecodecamp.org/why-you-need-python-environments-and-how-to-manage-them-with-conda-85f155f4353c">Why?</a>). I recommend conda for Windows users.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.</span></code> - Call from root directory</p></li>
 </ol>
 <p>That should be it!</p>
+</div>
 </div>
 <div class="section" id="install-with-python">
 <h3>Install with Python<a class="headerlink" href="#install-with-python" title="Permalink to this headline">¶</a></h3>
@@ -321,6 +325,10 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 <div class="section" id="binary-wheel">
 <h4>Binary Wheel<a class="headerlink" href="#binary-wheel" title="Permalink to this headline">¶</a></h4>
 <p>This <a class="reference external" href=".github/wheels.yml">workflow file</a> generates the binary wheels and uploads to PyPI. You will need to configure your github repository with a token access to publish to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> and <code class="docutils literal notranslate"><span class="pre">PyPITest</span></code>. Please read <a class="reference external" href="https://github.com/pypa/gh-action-pypi-publish">here</a> about what is expected. Note that this workflow only run on the master branch, and publishing only occurs on tagged releases.</p>
+</div>
+<div class="section" id="tests">
+<h4>Tests<a class="headerlink" href="#tests" title="Permalink to this headline">¶</a></h4>
+<p>Automatic testing is also done using this <a class="reference external" href=".github/tests.yml">test workflow file</a></p>
 </div>
 </div>
 <div class="section" id="documentation">
@@ -338,6 +346,7 @@ CPPL_WITH_OPENMP:BOOL=ON // CPPL - Build with OpenMP Support
 </div>
 <div class="section" id="release-steps">
 <h3>Release Steps<a class="headerlink" href="#release-steps" title="Permalink to this headline">¶</a></h3>
+<p>These are the release steps that I perform to create a release.</p>
 <ol class="arabic simple">
 <li><p>Make all necessary changes</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">scripts/manage_versions.py</span> <span class="pre">--bump</span> <span class="pre">patch</span></code></p></li>

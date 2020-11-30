@@ -1,3 +1,14 @@
+"""Create a Clone of this template and rename library
+This will create a copy of this project in the PARENT folder of where this project resides.
+Call with python/scripts/rename-project --help
+
+| PARENT
+    | - cpp-pybind-skel
+    | - NEW_PROJECT_FOLDER
+
+
+"""
+
 import argparse
 from pathlib import Path
 import shutil
