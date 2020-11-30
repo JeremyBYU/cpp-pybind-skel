@@ -110,7 +110,7 @@ def rename_files(base, libname, libname_short, libname_python):
 
 def ignore_folders(directory, contents):
     filtered = [content for content in contents if content in [
-        'build', 'cmake-build', '.git', 'cpp_api', 'python_api', 'dist', 'wheelhouse']]
+        'build', 'cmake-build', '.git', 'cpp_api', 'python_api', 'dist', 'wheelhouse', 'docs', '.pytest_cache']]
     return filtered
 
 
@@ -143,6 +143,10 @@ def main():
     logging.info("Setting version to 0.0.1")
     with open(Path(new_base) / 'src/version.txt', 'w') as f:
         f.write("MAJOR {}\nMINOR {}\nPATCH {}".format(0, 0, 1))
+
+    # Delete docs directories
+    print("Deleting unneeded directories")
+    shutil.rmtree(Path(new_base) / "src_docs/_out", ignore_errors=False, onerror=None)
 
 
 

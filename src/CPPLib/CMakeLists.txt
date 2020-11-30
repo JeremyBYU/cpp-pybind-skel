@@ -4,7 +4,7 @@ configure_file("CPPLConfig.hpp.in" "CPPLConfig.hpp" @ONLY)
 # Set the Source, Header Files
 set(CPPLIB_SRC "${CMAKE_CURRENT_SOURCE_DIR}")
 set(INCLUDE_DIR "${PROJECT_SOURCE_DIR}/include")
-set(CPPLIB_INCLUDE_DIR "${INCLUDE_DIR}/CPPlib")
+set(CPPLIB_INCLUDE_DIR "${INCLUDE_DIR}/CPPLib")
 set(CPPLIB_SOURCE_FILES ${CPPLIB_SRC}/CPPLib.cpp ${CPPLIB_SRC}/CPPLConfig.cpp)
 set(CPPLIB_HEADER_FILES ${CPPLIB_INCLUDE_DIR}/CPPLib.hpp)
 
