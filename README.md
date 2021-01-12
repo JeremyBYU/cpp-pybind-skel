@@ -5,7 +5,7 @@
 [![Docs](https://img.shields.io/badge/API-docs-blue)](https://jeremybyu.github.io/cpp-pybind-skel/)
 [![License](https://img.shields.io/pypi/l/cpplib.svg)](https://github.com/JeremyBYU/cpp-pybind-skel/blob/master/LICENSE)
 
-This is a template repository used to create  C++/Python libraries. This is for individuals who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate world of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
+This is a template repository used to create  C++/Python libraries. This is for individuals who want to write a *standalone* C++ library that can *also* be bound to Python using [Pybind11](https://pybind11.readthedocs.io/en/stable/) for better performance. This repository additionally takes care of the intricate task of building **binary** wheels automatically and publishing to PyPI, including linux and windows. I have tried my best to use good tools and practices in this repo to provide a clean codebase for others to start their project on. What you see in this repo is not all my work, but lessons/code I have learned after observing [others work](#acknowledgements). 
 
 ## Key Features
 
